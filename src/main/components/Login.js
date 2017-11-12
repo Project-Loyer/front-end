@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     Alert,
-    Platform,
+    Platform, ScrollView,
     StyleSheet,
     Text,
     TextInput,
@@ -13,7 +13,7 @@ import {Button} from "native-base";
 export class Login extends Component<{}> {
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.loginForm}>
                     <TextInput
                         style={styles.textInput}
@@ -48,19 +48,19 @@ export class Login extends Component<{}> {
                     </Button>
                     <Text style={styles.linkAccount}>...o vincule su cuenta</Text>
                     <View style={styles.linkAccountButtonsRow}>
-                        <Button large
+                        <Button
                             style={styles.facebookButton}
                             onPress={() => { Alert.alert('Facebook!')}}>
                             <Text style={styles.buttonText}>FACEBOOK</Text>
                         </Button>
-                        <Button large
+                        <Button
                             style={styles.googleButton}
                             onPress={() => { Alert.alert('Google!')}}>
                             <Text style={styles.buttonText}>GOOGLE</Text>
                         </Button>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         padding: 24,
     },
     loginForm: {
-        marginTop: 64,
+        marginTop: 58,
         alignSelf: 'stretch'
     },
     textInput: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         paddingVertical: 12,
         paddingHorizontal: 4,
-        marginBottom: 96
+        marginBottom: 64
     },
     passwordForgotten: {
         color: '#8BC34A',
