@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     Alert,
-    Platform, ScrollView,
+    Platform,
+    ScrollView,
     StyleSheet,
     Text,
     TextInput,
@@ -11,30 +12,33 @@ import {
 import {Button} from "native-base";
 
 export class Login extends Component<{}> {
+    static navigationOptions = {
+        title: 'Bienvenido',
+    };
+
     render() {
+        const { navigate } = this.props.navigation;
+
         return (
             <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.loginForm}>
                     <TextInput
                         style={styles.textInput}
-                        placeholder="Usuario o e-mail"
-                    />
+                        placeholder="Usuario o e-mail" />
                     <TextInput
                         style={styles.textInput}
                         placeholder="Contraseña"
                         password={true}
-                        secureTextEntry={true}
-                    />
+                        secureTextEntry={true} />
                     <View style={styles.loginButtonsContainer}>
                         <Button
                             style={styles.mainButton}
-                            onPress={() => { Alert.alert('Ingresaste!')}}>
+                            onPress={() => navigate('Home')}>
                             <Text style={styles.buttonText}>INGRESAR</Text>
                         </Button>
                         <TouchableHighlight
                             onPress={ () => Alert.alert('Olvidaste tu contraseña!') }
-                            underlayColor="transparent"
-                        >
+                            underlayColor="transparent">
                             <Text style={styles.passwordForgotten}>¿Olvidó su contraseña?</Text>
                         </TouchableHighlight>
                     </View>
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
         padding: 24,
     },
     loginForm: {
-        marginTop: 58,
+        marginTop: 36,
         alignSelf: 'stretch'
     },
     textInput: {

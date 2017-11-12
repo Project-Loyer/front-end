@@ -15,11 +15,16 @@ import {
     View
 } from 'react-native';
 import {Login} from "./components/Login";
+import {StackNavigator} from "react-navigation";
+import {Home} from "./components/Home";
+
+const LoyerApp = StackNavigator({
+    Home: { screen: Home },
+    Login: { screen: Login }
+});
 
 export default class App extends Component<{}> {
   render() {
-    return (
-      <Login />
-    );
+    return <LoyerApp />;
   }
 }
