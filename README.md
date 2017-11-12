@@ -18,5 +18,10 @@ mkdir android/app/src/main/assets
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 ```
 
+A algunos usuarios no se les actualiza la app cada vez que la buildean de nuevo, incluso matando el server previamente.
+Para solucionar esto, es necesario correr el comando de arriba antes de cada start o run-android.
+
+Para hacer más rápido el trámite, el comando está guardado como un script dentro del package.json, que incluye el android-run. Por lo tanto, sólo se debe ejecutar `npm run android`
+
 Una vez con la app corriendo, podemos activar el Live realod agitando el dispositivo y seleccionar la opcion correspondiente en el menu.
 Esto nos permite ver los cambios reflejados en la app inmediatamente.
