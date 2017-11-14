@@ -1,48 +1,77 @@
 import React, { Component } from 'react';
-import {
-    ActivityIndicator,
-    StyleSheet, Text,
-    View
-} from 'react-native';
-import {Button} from "native-base";
+import {Alert} from 'react-native';
+
+import { StatusBar, StyleSheet } from "react-native";
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner } from "native-base";
+
+
 import renderIf from "../util/renderIf";
+import {color} from "../global/Color.js";
 
 export class Home extends Component<{}> {
-    static navigationOptions = {
-        title: 'Loyer',
-    };
-
     constructor(props) {
         super(props);
 
-        this.state = {loading: true};
+        this.state = {
+            loading: true,
+        };
 
-        this.closeActivityIndicator = () => setInterval(() => {
+        this.closeActivityIndicator = () => setTimeout(() => {
             this.setState({ loading: false });
-        }, 1500);
+        }, 2000);
     }
 
     componentDidMount = () => this.closeActivityIndicator();
+    componentWillUnmount = () => this.setState({loading: true});
     render() {
-        const { navigate } = this.props.navigation;
+        renderHome = () => {
+            return (
+                <Container>
+                    <Header>
+                        <Left>
+                            <Button
+                                transparent
+                                onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+                                <Icon name="menu" />
+                            </Button>
+                        </Left>
+                        <Body>
+                        <Title>Loyer</Title>
+                        </Body>
+                        <Right>
+                            <Button
+                                transparent
+                                onPress={() => Alert.alert("Notificaciones!")}>
+                                <Icon name="notifications" />
+                            </Button>
+                        </Right>
+
+                    </Header>
+                    <Content padder>
+                        <Card>
+                            <CardItem>
+                                <Body>
+                                    <Text>Pantalla de inicio</Text>
+                                </Body>
+                            </CardItem>
+                        </Card>
+                    </Content>
+                </Container>
+            )};
+
 
         return (
-            <View style={styles.container}>
+            <Container>
                 {renderIf(this.state.loading)(
-                <ActivityIndicator
-                    animating = {this.state.loading}
-                    color = '#8BC34A'
-                    size = "large"
-                    style = {styles.activityIndicator} />
+                    <Content marginTop="50%">
+                        <Spinner color={color.primary.dark} />
+                    </Content>
                 )}
 
                 {renderIf(!this.state.loading)(
-                <Button
-                    onPress={() => navigate('Login')}>
-                    <Text>IR AL LOGIN</Text>
-                </Button>
+                    renderHome
                 )}
-            </View>
+            </Container>
         );
     }
 }

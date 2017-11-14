@@ -14,14 +14,31 @@ import {
     TextInput,
     View
 } from 'react-native';
+import {StackNavigator,DrawerNavigator} from "react-navigation";
+import {SideBar} from "./sidebar/SideBar";
 import {Login} from "./components/Login";
-import {StackNavigator} from "react-navigation";
 import {Home} from "./components/Home";
 
+/*
 const LoyerApp = StackNavigator({
-    Home: { screen: Home },
-    Login: { screen: Login }
+    Login: { screen: Login },
+    Home: { screen: Home }
+}, {
+    initialRouteName: 'Login',
+    headerMode: 'none'
 });
+*/
+
+const LoyerApp = DrawerNavigator(
+    {
+        Home: { screen: Home },
+        Login: { screen: Login }
+    },
+    {
+        initialRouteName : "Login",
+        contentComponent: props => <SideBar {...props} />
+    }
+);
 
 export default class App extends Component<{}> {
   render() {

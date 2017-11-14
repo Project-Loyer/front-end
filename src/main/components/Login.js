@@ -9,18 +9,15 @@ import {
     TouchableHighlight,
     View
 } from 'react-native';
-import {Button} from "native-base";
+import {Button, Icon} from "native-base";
+import {color} from "../global/Color"
 
 export class Login extends Component<{}> {
-    static navigationOptions = {
-        title: 'Bienvenido',
-    };
 
     render() {
-        const { navigate } = this.props.navigation;
-
         return (
             <ScrollView contentContainerStyle={styles.container}>
+                <Text style={{fontSize:40}}>Bienvenidos a </Text><Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text>
                 <View style={styles.loginForm}>
                     <TextInput
                         style={styles.textInput}
@@ -31,10 +28,11 @@ export class Login extends Component<{}> {
                         password={true}
                         secureTextEntry={true} />
                     <View style={styles.loginButtonsContainer}>
-                        <Button
+                        <Button iconRight
                             style={styles.mainButton}
-                            onPress={() => navigate('Home')}>
+                            onPress={() => this.props.navigation.navigate('Home')}>
                             <Text style={styles.buttonText}>INGRESAR</Text>
+                            <Icon name="send" style={{marginLeft: 15, marginRight: 0}}/>
                         </Button>
                         <TouchableHighlight
                             onPress={ () => Alert.alert('Olvidaste tu contraseña!') }
@@ -52,15 +50,17 @@ export class Login extends Component<{}> {
                     </Button>
                     <Text style={styles.linkAccount}>...o vincule su cuenta</Text>
                     <View style={styles.linkAccountButtonsRow}>
-                        <Button
+                        <Button iconLeft primary
                             style={styles.facebookButton}
                             onPress={() => { Alert.alert('Facebook!')}}>
-                            <Text style={styles.buttonText}>FACEBOOK</Text>
+                            <Icon name='logo-facebook' />
+                            <Text style={ [styles.textButtonSocial] }>FACEBOOK</Text>
                         </Button>
-                        <Button
+                        <Button iconLeft primary
                             style={styles.googleButton}
                             onPress={() => { Alert.alert('Google!')}}>
-                            <Text style={styles.buttonText}>GOOGLE</Text>
+                            <Icon style={ {marginRight: 5} } name='logo-google'/>
+                            <Text style={ [styles.textButtonSocial] }>GOOGLE</Text>
                         </Button>
                     </View>
                 </View>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: '#F1F8E9',
+        backgroundColor: '#FFFFFF',
         padding: 24,
     },
     loginForm: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch'
     },
     textInput: {
-        height: 64
+        height: 50
     },
     loginButtonsContainer: {
         flexDirection: 'row',
@@ -91,33 +91,32 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         paddingVertical: 12,
         paddingHorizontal: 4,
-        marginBottom: 64
+        marginBottom: 30
     },
     passwordForgotten: {
-        color: '#8BC34A',
+        //color: '#8BC34A',
         textDecorationLine: 'underline'
     },
     mainButton: {
-        backgroundColor: '#8BC34A',
+        backgroundColor: color.secondary.color,
         paddingHorizontal: 16,
-        fontColor: 'white',
-        textAlign: 'center'
+        //textAlign: 'center'
     },
     buttonText: {
-        color: 'white',
-        textAlign: 'center',
-        fontSize: 12
+        color: '#FFFFFF',
+        //textAlign: 'center',
+        fontSize: 18
     },
     register: {
         alignSelf: 'stretch'
     },
     noAccount: {
-        textAlign: 'center',
+        //textAlign: 'center',
         fontSize: 24,
         marginVertical: 12
     },
     linkAccount: {
-        textAlign: 'center',
+        //textAlign: 'center',
         fontSize: 18,
         marginTop: 24
     },
@@ -129,17 +128,24 @@ const styles = StyleSheet.create({
         paddingVertical: 12
     },
     facebookButton: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#1E88E5',
+        //flex: 1,
+        width: "48%",
+        justifyContent: 'flex-start',
+        backgroundColor: color.general.facebook,
         paddingHorizontal: 16,
-        marginRight: 12
+        marginRight: 5,
     },
     googleButton: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#F44336',
+        //flex: 1,
+        justifyContent: 'flex-start',
+        backgroundColor: color.general.google,
         paddingHorizontal: 16,
-        marginLeft: 12
+        marginLeft: 5,
+        width: "48%"
+    },
+    textButtonSocial : {
+        color: "#FFFFFF",
+        fontSize : 18,
+        marginLeft: 10
     }
 });
