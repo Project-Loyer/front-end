@@ -1,10 +1,14 @@
-#LoyerApp
+# LoyerApp
 
-##Ejecución
+## Ejecución
 
-Para ejecutar los comandos de react-native debemos instalar el cliente de react-native: `npm install -g react-native-cli`
+Para ejecutar los comandos de react-native debemos instalar el cliente de react-native: 
 
-Para levantar la app en el dispositivo, primero debemos levantar react-native desde el directorio raíz del proyecto: `react-native start`
+`npm install -g react-native-cli`
+
+Para levantar la app en el dispositivo, primero debemos levantar react-native desde el directorio raíz del proyecto: 
+
+`react-native start`
 
 Luego abrir otra terminal, también en el directorio del proyecto, y ejecutar alguno de los siguientes comandos, de acuerdo al SO del dispositivo conectado vía USB:
 ```
