@@ -13,7 +13,7 @@ const routes_data = {
     "Calendar" : {
         "icon" : "calendar",
         "name" : "Calendario",
-        "goto" : "Home",
+        "goto" : "CalendarScreen",
     },
     "Records" : {
         "icon" : "md-paper",

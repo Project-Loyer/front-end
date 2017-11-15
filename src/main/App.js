@@ -18,6 +18,7 @@ import {StackNavigator,DrawerNavigator} from "react-navigation";
 import {SideBar} from "./sidebar/SideBar";
 import {Login} from "./components/Login";
 import {Home} from "./components/Home";
+import CalendarScreen from "./components/CalendarScreen";
 
 /*
 const LoyerApp = StackNavigator({
@@ -32,6 +33,7 @@ const LoyerApp = StackNavigator({
 const LoyerApp = DrawerNavigator(
     {
         Home: { screen: Home },
+        CalendarScreen : {screen: CalendarScreen},
         Login: { screen: Login }
     },
     {
