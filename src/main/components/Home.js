@@ -24,40 +24,77 @@ export class Home extends Component<{}> {
     componentDidMount = () => this.closeActivityIndicator();
     componentWillUnmount = () => this.setState({loading: true});
     render() {
-        renderHome = () => {
-            return (
-                <Container>
-                    <Header>
-                        <Left>
-                            <Button
-                                transparent
-                                onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                                <Icon name="menu" />
-                            </Button>
-                        </Left>
-                        <Body>
-                        <Title>Loyer</Title>
-                        </Body>
-                        <Right>
-                            <Button
-                                transparent
-                                onPress={() => Alert.alert("Notificaciones!")}>
-                                <Icon name="notifications" />
-                            </Button>
-                        </Right>
+        return (
+            <Container>
+                <Header>
+                    <Left>
+                        <Button
+                            transparent
+                            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+                            <Icon name="menu" />
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Title>Loyer</Title>
+                    </Body>
+                    <Right>
+                        <Button
+                            transparent
+                            onPress={() => Alert.alert("Notificaciones!")}>
+                            <Icon name="notifications" />
+                        </Button>
+                    </Right>
 
-                    </Header>
-                    <Content padder>
-                        <Card>
-                            <CardItem>
+                </Header>
+                <Content padder>
+                    <Text style={{fontSize:30,fontWeight:'bold',textAlign:'center'}}>Resumen de su día</Text>
+                    <Card>
+                        <CardItem>
+                            <Left>
+                                <Icon name={"calendar"} />
                                 <Body>
-                                    <Text>Pantalla de inicio</Text>
+                                <Text>Calendario</Text>
                                 </Body>
-                            </CardItem>
-                        </Card>
-                    </Content>
-                </Container>
-            )};
+                            </Left>
+                        </CardItem>
+                        <CardItem>
+                            <Body>
+                            <Text>Hoy no hay ningún evento</Text>
+                            </Body>
+                        </CardItem>
+                    </Card>
+                    <Card>
+                        <CardItem>
+                            <Left>
+                                <Icon name={"ios-paper"} />
+                                <Body>
+                                <Text>Documetos próximos a vencer</Text>
+                                </Body>
+                            </Left>
+                        </CardItem>
+                        <CardItem>
+                            <Text>Expediente 23-910-A2-1B3</Text>
+                            <Right>
+                                <Icon name="arrow-forward" />
+                            </Right>
+                        </CardItem>
+                        <CardItem>
+                            <Text>Expediente 23-910-A2-1B5</Text>
+                            <Right>
+                                <Icon name="arrow-forward" />
+                            </Right>
+                        </CardItem>
+                        <CardItem>
+                            <Text>Expediente 23-745-F10-897</Text>
+                            <Right>
+                                <Icon name="arrow-forward" />
+                            </Right>
+                        </CardItem>
+                    </Card>
+                </Content>
+            </Container>
+        )};
+    renderHome = () => {
 
 
         return (

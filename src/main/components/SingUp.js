@@ -1,68 +1,49 @@
 import React, { Component } from 'react';
+
+import { Button, Icon} from "native-base";
 import {
-    Alert,
-    Platform,
     ScrollView,
     StyleSheet,
     Text,
     TextInput,
-    TouchableHighlight,
     View
 } from 'react-native';
-import {Button, Icon} from "native-base";
 import {color} from "../global/Color"
 
-export class Login extends Component<{}> {
 
-    render() {
+export class Singup extends Component<{}>{
+    render(){
         return (
             <ScrollView contentContainerStyle={styles.container}>
-                <Text style={{fontSize:40}}>Bienvenidos a </Text><Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text>
-                <View style={styles.loginForm}>
+                <Button
+                    transparent
+                    title="Inicio"
+                    onPress={() => this.props.navigation.navigate('Login')}>
+                    <Icon name="ios-arrow-back" style={{color :color.secondary.color}} />
+                </Button>
+                <Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text><Text style={{fontSize:40}}>Registración</Text>
+                <View style={styles.singupForm}>
                     <TextInput
                         style={styles.textInput}
-                        placeholder="Usuario o e-mail" />
+                        placeholder="Nombre de usuario" />
                     <TextInput
                         style={styles.textInput}
                         placeholder="Contraseña"
                         password={true}
                         secureTextEntry={true} />
-                    <View style={styles.loginButtonsContainer}>
-                        <Button iconRight
-                            style={styles.mainButton}
-                            onPress={() => this.props.navigation.navigate('Home')}>
-                            <Text style={styles.buttonText}>INGRESAR</Text>
-                            <Icon name="send" style={{marginLeft: 15, marginRight: 0}}/>
-                        </Button>
-                        <TouchableHighlight
-                            onPress={ () => Alert.alert('Olvidaste tu contraseña!') }
-                            underlayColor="transparent">
-                            <Text style={styles.passwordForgotten}>¿Olvidó su contraseña?</Text>
-                        </TouchableHighlight>
-                    </View>
-                </View>
-                <View style={styles.register}>
-                    <Text style={styles.noAccount}>¿No tiene cuenta?</Text>
-                    <Button block
-                            style={styles.mainButton}
-                            onPress={() => { this.props.navigation.navigate('Singup')}}>
-                        <Text style={styles.buttonText}>REGISTRARSE</Text>
-                    </Button>
-                    <Text style={styles.linkAccount}>...o vincule su cuenta</Text>
-                    <View style={styles.linkAccountButtonsRow}>
-                        <Button iconLeft primary
-                            style={styles.facebookButton}
-                            onPress={() => { Alert.alert('Facebook!')}}>
-                            <Icon name='logo-facebook' />
-                            <Text style={ [styles.textButtonSocial] }>FACEBOOK</Text>
-                        </Button>
-                        <Button iconLeft primary
-                            style={styles.googleButton}
-                            onPress={() => { Alert.alert('Google!')}}>
-                            <Icon style={ {marginRight: 5} } name='logo-google'/>
-                            <Text style={ [styles.textButtonSocial] }>GOOGLE</Text>
-                        </Button>
-                    </View>
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Repita la contraseña"
+                        password={true}
+                        secureTextEntry={true} />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Email"
+                        keyboardType='email-address'/>
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Fecha de nacimiento"
+                        keyboardType='numeric'/>
                 </View>
             </ScrollView>
         );

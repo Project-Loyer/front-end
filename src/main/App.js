@@ -19,6 +19,8 @@ import {SideBar} from "./sidebar/SideBar";
 import {Login} from "./components/Login";
 import {Home} from "./components/Home";
 import CalendarScreen from "./components/CalendarScreen";
+import {Singup} from "./components/SingUp";
+import Customers from "./components/Customers";
 
 /*
 const LoyerApp = StackNavigator({
@@ -34,7 +36,9 @@ const LoyerApp = DrawerNavigator(
     {
         Home: { screen: Home },
         CalendarScreen : {screen: CalendarScreen},
-        Login: { screen: Login }
+        Customers : {screen: Customers},
+        Login: { screen: Login },
+        Singup: { screen: Singup }
     },
     {
         initialRouteName : "Login",
