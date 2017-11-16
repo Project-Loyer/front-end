@@ -37,7 +37,12 @@ export class Home extends Component<{}> {
                     <Body>
                     <Title>Loyer</Title>
                     </Body>
-                    <Right>
+                    <Right>                    
+                        <Button
+                            transparent
+                            onPress={() => Alert.alert("Perfil de Usuario")}>
+                            <Icon name="person" />
+                        </Button>
                         <Button
                             transparent
                             onPress={() => Alert.alert("Notificaciones!")}>
