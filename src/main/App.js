@@ -23,12 +23,11 @@ import {Singup} from "./components/SingUp";
 import Customers from "./components/Customers";
 
 /*
-const LoyerApp = StackNavigator({
+const LoyerAppLogin = StackNavigator({
     Login: { screen: Login },
-    Home: { screen: Home }
+    Singup: { screen: Singup }
 }, {
     initialRouteName: 'Login',
-    headerMode: 'none'
 });
 */
 
