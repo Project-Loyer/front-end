@@ -1,6 +1,5 @@
 import React from "react";
 
-import { AppRegistry, Image, StatusBar } from "react-native";
 import { ActionSheet, Container, Content, Text, List, ListItem, Left, Icon, Body, Thumbnail, H2 } from "native-base";
 import {color} from "../global/Color"
 
@@ -24,7 +23,7 @@ const routes_data = {
     "Documents": {
         "icon" : "folder",
         "name" : "Documentos",
-        "goto" : "DocumentsScreen",
+        "goto" : "Documents",
     },
     "Records" : {
         "icon" : "md-paper",

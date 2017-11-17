@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Body, Button, Container, Content, Header, Icon, Left, List, ListItem, Right, Text, Title} from "native-base";
+import {Alert} from 'react-native';
 
-export class Documents extends Component<{}> {
+export default class Documents extends Component {
     render() {
         return (
             <Container>
@@ -14,7 +15,7 @@ export class Documents extends Component<{}> {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Documentos</Title>
+                    <Title>Documentos</Title>
                     </Body>
                     <Right>
                         <Button

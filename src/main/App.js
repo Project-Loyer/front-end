@@ -5,37 +5,21 @@
  */
 
 import React, { Component } from 'react';
-import {
-    Alert,
-    Button,
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    View
-} from 'react-native';
-import {StackNavigator,DrawerNavigator} from "react-navigation";
+import {DrawerNavigator} from "react-navigation";
 import {SideBar} from "./sidebar/SideBar";
 import {Login} from "./components/Login";
 import {Home} from "./components/Home";
 import CalendarScreen from "./components/CalendarScreen";
 import {Singup} from "./components/SingUp";
 import Customers from "./components/Customers";
-
-/*
-const LoyerAppLogin = StackNavigator({
-    Login: { screen: Login },
-    Singup: { screen: Singup }
-}, {
-    initialRouteName: 'Login',
-});
-*/
+import Documents from "./components/Documents";
 
 const LoyerApp = DrawerNavigator(
     {
         Home: { screen: Home },
         CalendarScreen : {screen: CalendarScreen},
         Customers : {screen: Customers},
+        Documents: {screen: Documents},
         Login: { screen: Login },
         Singup: { screen: Singup }
     },
