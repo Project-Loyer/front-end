@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1076749170928",
+    "firebase_url": "https://project-loyer.firebaseio.com",
+    "project_id": "project-loyer",
+    "storage_bucket": "project-loyer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076749170928:android:d6f9c93db5627494",
+        "android_client_info": {
+          "package_name": "com.loyerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1076749170928-fqs7rkb1cq0snjm7opnjcf5k0qnlhkke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbj6zf9gbS_RXzg-klbV1u2huvn06VHyY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

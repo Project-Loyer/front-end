@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import {Alert} from 'react-native';
 
 import { StatusBar, StyleSheet } from "react-native";
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner } from "native-base";
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Badge } from "native-base";
 
 
 import renderIf from "../util/renderIf";
 import {color} from "../global/Color.js";
 
-export class Home extends Component<{}> {
+import {PushNotificator} from '../util/PushNotificator'
+
+export class Home extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             loading: true,
+            notifications: 10
         };
 
         this.closeActivityIndicator = () => setTimeout(() => {
@@ -26,6 +29,7 @@ export class Home extends Component<{}> {
     render() {
         return (
             <Container>
+                <PushNotificator />
                 <Header>
                     <Left>
                         <Button
@@ -44,8 +48,13 @@ export class Home extends Component<{}> {
                             <Icon name="person" />
                         </Button>
                         <Button
+                            badge
+                            vertical
                             transparent
                             onPress={() => Alert.alert("Notificaciones!")}>
+                            <Badge>
+                                <Text>{this.state.notifications}</Text>
+                            </Badge>                
                             <Icon name="notifications" />
                         </Button>
                     </Right>
