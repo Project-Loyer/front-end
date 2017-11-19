@@ -14,6 +14,7 @@ import {Singup} from "./components/SingUp";
 import Customers from "./components/Customers";
 import Documents from "./components/Documents";
 import CaseFile from "./components/CaseFile";
+import Document from "./components/Document";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -22,6 +23,7 @@ const LoyerApp = DrawerNavigator(
         Customers : {screen: Customers},
         Documents: {screen: Documents},
         CaseFile: {screen: CaseFile},
+        Document: {screen: Document},
         Login: { screen: Login },
         Singup: { screen: Singup }
     },
