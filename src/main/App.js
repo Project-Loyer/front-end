@@ -13,6 +13,7 @@ import CalendarScreen from "./components/CalendarScreen";
 import {Singup} from "./components/SingUp";
 import Customers from "./components/Customers";
 import Documents from "./components/Documents";
+import CaseFile from "./components/CaseFile";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -20,6 +21,7 @@ const LoyerApp = DrawerNavigator(
         CalendarScreen : {screen: CalendarScreen},
         Customers : {screen: Customers},
         Documents: {screen: Documents},
+        CaseFile: {screen: CaseFile},
         Login: { screen: Login },
         Singup: { screen: Singup }
     },
