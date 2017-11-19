@@ -45,23 +45,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24
     },
     title: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
         color: color.primary.dark,
-        margin: 12
+        marginVertical: 12
     },
     date: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'flex-start',
         color: color.secondary.light,
         fontSize: 9
     },
     body: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
         color: color.secondary.dark
     }
 });
