@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from "react-native";
-import {Body, Button, Container, Content, H1, Header, Icon, Left, Right, Text, Title} from "native-base";
+import {Body, Button, Container, Content, H1, Header, Icon, Left, Right, Text, Title, View} from "native-base";
 import {color} from "../global/Color"
 
 export default class Document extends Component {
@@ -27,8 +27,13 @@ export default class Document extends Component {
                     </Body>
                 </Header>
                 <Content style={styles.container}>
-                    <H1 style={styles.title}>{this.state.document.title}</H1>
-                    <Text style={styles.date}>{this.state.document.date}</Text>
+                    <View style={styles.header}>
+                        <H1 style={styles.title}>{this.state.document.title}</H1>
+                        <View style={styles.infoRow}>
+                            <Text style={styles.date}>{this.state.document.date}</Text>
+                            <Text style={styles.ownerInfo}>de {this.state.document.owner}</Text>
+                        </View>
+                    </View>
                     <Text style={styles.body}>{this.state.document.content}</Text>
                 </Content>
             </Container>
@@ -44,13 +49,26 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 24
     },
-    title: {
-        color: color.primary.dark,
+    header: {
         marginVertical: 12
+    },
+    title: {
+        color: color.primary.dark
+    },
+    infoRow: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        alignSelf: 'stretch'
     },
     date: {
         color: color.secondary.light,
-        fontSize: 9
+        fontSize: 10
+    },
+    ownerInfo: {
+        color: color.primary.light,
+        fontSize: 10
     },
     body: {
         color: color.secondary.dark
