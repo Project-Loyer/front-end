@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { StyleSheet } from "react-native";
 import {Body, Button, Container, Content, Header, Icon, Left, List, ListItem, Right, Text, Title} from "native-base";
+import {color} from "../global/Color";
+import ActionButton from "react-native-action-button";
 
 export default class CaseFile extends Component {
     constructor(props) {
@@ -40,7 +43,23 @@ export default class CaseFile extends Component {
                         }>
                     </List>
                 </Content>
+                <ActionButton buttonColor={color.primary.light}>
+                    <ActionButton.Item
+                        buttonColor={color.primary.color}
+                        title="Subir documento"
+                        onPress={() => console.log("add tapped!")}>
+                        <Icon name="cloud-upload" style={styles.fabIcon} />
+                    </ActionButton.Item>
+                </ActionButton>
             </Container>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    fabIcon: {
+        fontSize: 22,
+        height: 22,
+        color: 'white'
+    }
+});
