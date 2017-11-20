@@ -12,6 +12,14 @@ export default class CaseFile extends Component {
         };
     }
 
+    addDoc(doc) {
+        this.setState(previousState => {
+            let newState = previousState;
+            newState.file.documents.push(doc);
+            return newState;
+        });
+    }
+
     render() {
         return (
             <Container>
@@ -47,7 +55,7 @@ export default class CaseFile extends Component {
                     <ActionButton.Item
                         buttonColor={color.primary.color}
                         title="Subir documento"
-                        onPress={() => console.log("add tapped!")}>
+                        onPress={() => this.addDoc({title: 'NUEVO DOC'})}>
                         <Icon name="cloud-upload" style={styles.fabIcon} />
                     </ActionButton.Item>
                 </ActionButton>
