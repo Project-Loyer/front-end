@@ -4,6 +4,8 @@ import { Platform } from 'react-native';
 
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from "react-native-fcm";
 
+import { NotificationsHandler } from '../global/NotificationsHandler.js';
+
 export class PushNotificator extends Component {
   constructor(props) {
     super(props);
@@ -74,12 +76,13 @@ export class PushNotificator extends Component {
       setTimeout(function() {
         FCM.isDirectChannelEstablished().then(d => console.log(d));
       }, 1000);
-
+      NotificationsHandler.receiveNotification(notif);
       this.showLocalNotification(notif);
     })
   }
 
   showLocalNotification(notif) {
+    
     FCM.presentLocalNotification({
       title: notif.fcm.title,
       body: notif.fcm.body,
@@ -92,7 +95,6 @@ export class PushNotificator extends Component {
 
   componentWillUnmount() {
     this.notificationListener.remove();
-    this.refreshTokenListener.remove();
   }
 
 

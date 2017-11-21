@@ -15,6 +15,7 @@ import CalendarScreen from "./components/CalendarScreen";
 import {Singup} from "./components/SingUp";
 import Customers from "./components/Customers";
 import Documents from "./components/Documents";
+import Notifications from "./components/Notifications";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -23,7 +24,8 @@ const LoyerApp = DrawerNavigator(
         Customers : {screen: Customers},
         Documents: {screen: Documents},
         Login: { screen: Login },
-        Singup: { screen: Singup }
+        Singup: { screen: Singup },
+        Notifications: { screen: Notifications }
     },
     {
         initialRouteName : "Login",

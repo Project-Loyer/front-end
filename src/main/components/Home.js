@@ -6,6 +6,7 @@ import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text
 
 import renderIf from "../util/renderIf";
 import {color} from "../global/Color.js";
+import { NotificationsHandler } from '../global/NotificationsHandler.js';
 
 import {PushNotificator} from '../util/PushNotificator';
 
@@ -17,7 +18,7 @@ export class Home extends Component {
 
         this.state = {
             loading: true,
-            notifications: 7
+            notifications: NotificationsHandler.notifications.find(notif => notif.seen).length
         };
 
         this.closeActivityIndicator = () => setTimeout(() => {
@@ -52,30 +53,16 @@ export class Home extends Component {
                             MainElement={
                                 <Button
                                 transparent
-                                onPress={() => Alert.alert("Notificaciones!")}>               
+                                onPress={() => this.props.navigation.navigate("Notifications")}>               
                                     <Icon name="notifications" />
                                 </Button>
                             }
                             BadgeElement={
-                                <Text style={{ color: '#FFFFFF', fontSize: 10 }}>{this.state.notifications}</Text>
+                                <Text style={styles.notificationsBadgeNumber}>{this.state.notifications}</Text>
                             }
-                            IconBadgeStyle={
-                                {width: 15,
-                                height: 15,
-                                minWidth: 15,
-                                top: 5}
-                              }
+                            IconBadgeStyle={styles.notificationsBadge}
+                            Hidden={this.state.notifications === 0}
                         />
-                        {/* <Button
-                            badge
-                            vertical
-                            transparent
-                            onPress={() => Alert.alert("Notificaciones!")}>
-                            <Badge style={{ position: 'absolute', right: 12, top: 3, paddingTop: 0, paddingBottom: 0, borderRadius: 100, height: 18 }}>
-                                <Text style={{ height: 16, fontSize: 12 }}>{this.state.notifications}</Text>
-                            </Badge>                
-                            <Icon name="notifications" />
-                        </Button> */}
                     </Right>
 
                 </Header>
@@ -159,5 +146,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 156
+    },
+    notificationsBadge: {
+        width: 15,
+        height: 15,
+        minWidth: 15,
+        top: 5
+    },
+    notificationsBadgeNumber: {
+        color: '#FFFFFF',
+        fontSize: 10
     }
 });
