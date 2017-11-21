@@ -15,6 +15,7 @@ import Customers from "./components/Customers";
 import Documents from "./components/Documents";
 import CaseFile from "./components/CaseFile";
 import Document from "./components/Document";
+import NewDocument from "./components/NewDocument";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -24,6 +25,7 @@ const LoyerApp = DrawerNavigator(
         Documents: {screen: Documents},
         CaseFile: {screen: CaseFile},
         Document: {screen: Document},
+        NewDocument: {screen: NewDocument},
         Login: { screen: Login },
         Singup: { screen: Singup }
     },

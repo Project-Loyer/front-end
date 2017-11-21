@@ -67,6 +67,16 @@ export default class Documents extends Component {
                     ]
                 }
             ]
+        };
+
+        this.addNewDoc();
+    }
+
+    addNewDoc() {
+        let newDoc = this.props.navigation.state.params ? this.props.navigation.state.params.newDoc : undefined;
+        if (newDoc) {
+            this.state.recentDocuments.unshift(newDoc);
+            this.state.caseFiles.find(file => file.id === newDoc.caseFile).documents.unshift(newDoc);
         }
     }
 
