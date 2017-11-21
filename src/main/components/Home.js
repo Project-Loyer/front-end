@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Alert} from 'react-native';
 
 import { StatusBar, StyleSheet } from "react-native";
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner } from "native-base";
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Thumbnail } from "native-base";
 
 
 import renderIf from "../util/renderIf";
@@ -37,11 +37,11 @@ export class Home extends Component<{}> {
                     <Body>
                     <Title>Loyer</Title>
                     </Body>
-                    <Right>                    
+                    <Right>
                         <Button
                             transparent
                             onPress={() => Alert.alert("Perfil de Usuario")}>
-                            <Icon name="person" />
+                            <Thumbnail small source={{uri: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg'}} />
                         </Button>
                         <Button
                             transparent

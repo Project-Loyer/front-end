@@ -21,12 +21,13 @@ export class Login extends Component<{}> {
                 <View style={styles.loginForm}>
                     <TextInput
                         style={styles.textInput}
-                        placeholder="Usuario o e-mail" />
+                        placeholder="Usuario o e-mail" value={"fburlando"} />
                     <TextInput
                         style={styles.textInput}
                         placeholder="Contraseña"
                         password={true}
-                        secureTextEntry={true} />
+                        secureTextEntry={true}
+                        value={"q1w2e3r4"} />
                     <View style={styles.loginButtonsContainer}>
                         <Button iconRight
                             style={styles.mainButton}
