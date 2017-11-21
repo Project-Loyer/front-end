@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet } from "react-native";
+import {StyleSheet} from "react-native";
 import {
-    Body, Button, Container, Content, Form, Header, Icon, Input, Item, Label, Left, Right, Text, Title
+    Body, Button, Container, Content, Form, Header, Icon, Input, Item, Label, Left, Right, Switch, Text, Title, View
 } from "native-base";
 import Moment from 'moment';
 
@@ -15,7 +15,8 @@ export default class NewDocument extends Component {
                 date: 'Justo ahora',
                 owner: 'Burlando',
                 caseFile: props.navigation.state.params.caseFile
-            }
+            },
+            shared: true
         };
     }
 
@@ -57,6 +58,12 @@ export default class NewDocument extends Component {
                                    onChangeText={(content) => this.setState({document: {...this.state.document, "content" : content } })} />
                         </Item>
                     </Form>
+                    <View style={styles.sharedRow}>
+                        <Label>Compartido</Label>
+                        <Switch
+                            onValueChange={(value) => this.setState({shared: value})}
+                            value={this.state.shared} />
+                    </View>
                     <Button block
                             style={styles.submitButton}
                             onPress={() => this.saveDocument()}>
@@ -78,6 +85,13 @@ const styles = StyleSheet.create({
     },
     titleInput: {
         marginBottom: 12
+    },
+    sharedRow: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        marginVertical: 12
     },
     submitButton: {
         marginVertical: 24
