@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from "react-native-fcm";
 
-import { NotificationsHandler } from '../global/NotificationsHandler.js';
+import NotificationsHandler from '../global/NotificationsHandler.js';
 
 export class PushNotificator extends Component {
   constructor(props) {
@@ -76,21 +76,26 @@ export class PushNotificator extends Component {
       setTimeout(function() {
         FCM.isDirectChannelEstablished().then(d => console.log(d));
       }, 1000);
+      
+      notif.seen = false;
+      notif.body = notif.fcm.body;
+      notif.date = notif["google.sent_time"];
       NotificationsHandler.receiveNotification(notif);
       this.showLocalNotification(notif);
     })
   }
 
   showLocalNotification(notif) {
-    
-    FCM.presentLocalNotification({
-      title: notif.fcm.title,
-      body: notif.fcm.body,
-      priority: "high",
-      click_action: notif.fcm.click_action,
-      show_in_foreground: true,
-      local: true
-    });
+    if (notif.priority === 'High') {    
+      FCM.presentLocalNotification({
+        title: notif.title,
+        body: notif.body,
+        priority: "high",
+        click_action: notif.fcm.click_action,
+        show_in_foreground: true,
+        local: true
+      });
+    }
   }
 
   componentWillUnmount() {

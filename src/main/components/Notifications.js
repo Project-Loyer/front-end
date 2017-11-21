@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, Container, Header, Content, List, ListItem, Icon, Left, Body, Separator } from 'native-base';
 import { color } from '../global/Color.js';
-import { NotificationsHandler } from '../global/NotificationsHandler.js';
+import NotificationsHandler from '../global/NotificationsHandler.js';
 
 export default class Notifications extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ export default class Notifications extends Component {
                 rows.push(
                     <ListItem icon key={"LI" + (i*10 + j)} style={styles.listItem}>
                         <Left key={"LIL" + (i*10 + j)}>
-                            <Icon key={"LII" + (i*10 + j)} name={notificationsOfType[j].type === 'MensajeCliente' ? 'text' : 'alarm'} />
+                            <Icon key={"LII" + (i*10 + j)} name={notificationsOfType[j].type === 'Mensaje de Cliente' ? 'text' : 'alarm'} />
                         </Left>
                         <Body key={"LIB" + (i*10 + j)} style={styles.listItemBody}>
                             <Text key={"LIBT" + (i*10 + j)} style={styles.listItemText}>{notificationsOfType[j].body}</Text>

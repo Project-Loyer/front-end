@@ -50,4 +50,4 @@ class NotificationsHandler {
 
 let nh = new NotificationsHandler();
 
-export { nh };
+export default nh;

@@ -6,7 +6,7 @@ import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text
 
 import renderIf from "../util/renderIf";
 import {color} from "../global/Color.js";
-import { NotificationsHandler } from '../global/NotificationsHandler.js';
+import NotificationsHandler from '../global/NotificationsHandler.js';
 
 import {PushNotificator} from '../util/PushNotificator';
 
@@ -15,10 +15,9 @@ import IconBadge from 'react-native-icon-badge';
 export class Home extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             loading: true,
-            notifications: NotificationsHandler.notifications.find(notif => notif.seen).length
+            notifications: NotificationsHandler.notifications.filter(notif => !notif.seen).length
         };
 
         this.closeActivityIndicator = () => setTimeout(() => {
