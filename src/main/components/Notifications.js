@@ -7,19 +7,23 @@ import NotificationsHandler from '../global/NotificationsHandler.js';
 export default class Notifications extends Component {
     constructor(props) {
         super(props);
+
+        setTimeout(()=>{
+            NotificationsHandler.markAsRead();
+        },2000);
     }
 
     render() {
-        var types = [...new Set(NotificationsHandler.notifications.map(notif => notif.type))];
-        var rows = [];
-        for (var i = 0; i < types.length; i++) {
+        let types = [...new Set(NotificationsHandler.notifications.map(notif => notif.type))];
+        let rows = [];
+        for (let i = 0; i < types.length; i++) {
             rows.push(
                 <Separator key={"LIH" + i} bordered>
                     <Text key={"LIHT" + i} style={styles.listHeader}>{types[i]}</Text>
                 </Separator>
             );
-            var notificationsOfType = NotificationsHandler.notifications.filter(notif => notif.type === types[i]).sort((a, b) => a.date - b.date);
-            for (var j = 0; j < notificationsOfType.length; j++) {
+            let notificationsOfType = NotificationsHandler.notifications.filter(notif => notif.type === types[i]).sort((a, b) => a.date - b.date);
+            for (let j = 0; j < notificationsOfType.length; j++) {
                 rows.push(
                     <ListItem icon key={"LI" + (i*10 + j)} style={styles.listItem}>
                         <Left key={"LIL" + (i*10 + j)}>

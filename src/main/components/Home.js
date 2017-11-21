@@ -17,8 +17,12 @@ export class Home extends Component {
         super(props);
         this.state = {
             loading: true,
-            notifications: NotificationsHandler.notifications.filter(notif => !notif.seen).length
+            notifications: NotificationsHandler.countNewNotifications()
         };
+
+        setInterval(()=>{
+            this.setState({notifications:NotificationsHandler.countNewNotifications()})
+        },500);
 
         this.closeActivityIndicator = () => setTimeout(() => {
             this.setState({ loading: false });

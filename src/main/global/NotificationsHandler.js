@@ -46,6 +46,10 @@ class NotificationsHandler {
     markAsRead() {
         this.notifications.forEach(notif => { notif.seen = true });
     }
+
+    countNewNotifications() {
+        return this.notifications.filter(notif => !notif.seen).length
+    }
 }
 
 let nh = new NotificationsHandler();
