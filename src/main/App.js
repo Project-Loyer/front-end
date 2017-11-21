@@ -17,6 +17,7 @@ import CaseFile from "./components/CaseFile";
 import Document from "./components/Document";
 import NewDocument from "./components/NewDocument";
 import {AsyncStorage} from "react-native";
+import {LoyerHeader} from "./components/LoyerHeader";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -31,7 +32,8 @@ const LoyerApp = DrawerNavigator(
     },
     {
         initialRouteName : "Home",
-        contentComponent: props => <SideBar {...props} />
+        contentComponent: props => <SideBar {...props} />,
+
     }
 );
 

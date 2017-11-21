@@ -3,7 +3,7 @@ import {Alert} from 'react-native';
 
 import { StatusBar, StyleSheet } from "react-native";
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Thumbnail } from "native-base";
-
+import {LoyerHeader} from "./LoyerHeader";
 
 import renderIf from "../util/renderIf";
 import {color} from "../global/Color.js";
@@ -26,31 +26,7 @@ export class Home extends Component<{}> {
     render() {
         return (
             <Container>
-                <Header>
-                    <Left>
-                        <Button
-                            transparent
-                            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                            <Icon name="menu" />
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Loyer</Title>
-                    </Body>
-                    <Right>
-                        <Button
-                            transparent
-                            onPress={() => Alert.alert("Perfil de Usuario")}>
-                            <Thumbnail small source={{uri: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg'}} />
-                        </Button>
-                        <Button
-                            transparent
-                            onPress={() => Alert.alert("Notificaciones!")}>
-                            <Icon name="notifications" />
-                        </Button>
-                    </Right>
-
-                </Header>
+                <LoyerHeader {...this.props} />
                 <Content padder>
                     <Text style={{fontSize:30,fontWeight:'bold',textAlign:'center'}}>Resumen de su día</Text>
                     <Card>

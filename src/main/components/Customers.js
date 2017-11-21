@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
 } from 'react-native';
-import { Container, Header, Title, Content, List, ListItem, ListView, Text,Button , Icon, Image, Left, Body, Right, Card, CardItem,Thumbnail} from 'native-base';
+import { Container, Header, Title, Content, List, ListItem, ListView, Text,Button , Icon, Left, Body, Right, Card, CardItem,Thumbnail} from 'native-base';
 import {color} from "../global/Color"
-
+import {LoyerHeader} from "./LoyerHeader";
 
 const customers = [
     {
@@ -60,30 +60,7 @@ export default class Customers extends Component {
     render() {
         return (
             <Container>
-                <Header>
-                    <Left>
-                        <Button
-                            transparent
-                            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                            <Icon name="menu" />
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Clientes</Title>
-                    </Body>
-                    <Right>
-                        <Button
-                            transparent
-                            onPress={() => Alert.alert("Perfil de Usuario")}>
-                            <Thumbnail small source={{uri: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg'}} />
-                        </Button>
-                        <Button
-                            transparent
-                            onPress={() => Alert.alert("Notificaciones!")}>
-                            <Icon name="notifications" />
-                        </Button>
-                    </Right>
-                </Header>
+                <LoyerHeader {...this.props} title={"Clientes"}/>
                 <Content>
                     <List
                         dataArray={customers}
