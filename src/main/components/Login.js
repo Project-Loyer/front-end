@@ -10,27 +10,32 @@ import {
     View
 } from 'react-native';
 import {Button, Icon} from "native-base";
-import {color} from "../global/Color"
+import {color} from "../global/Color";
+import {AsyncStorage} from "react-native";
 
 export class Login extends Component<{}> {
+    saveData = function() {
+        AsyncStorage.setItem("Logged","true");
+    };
 
     render() {
         return (
-            <ScrollView contentContainerStyle={styles.container}>
+            <ScrollView contentContainerStyle={[styles.container,{height:"100%"}]}>
                 <Text style={{fontSize:40}}>Bienvenidos a </Text><Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text>
                 <View style={styles.loginForm}>
                     <TextInput
                         style={styles.textInput}
-                        placeholder="Usuario o e-mail" />
+                        placeholder="Usuario o e-mail" value={"fburlando"} />
                     <TextInput
                         style={styles.textInput}
                         placeholder="Contraseña"
                         password={true}
-                        secureTextEntry={true} />
+                        secureTextEntry={true}
+                        value={"q1w2e3r4"} />
                     <View style={styles.loginButtonsContainer}>
                         <Button iconRight
                             style={styles.mainButton}
-                            onPress={() => this.props.navigation.navigate('Home')}>
+                            onPress={() => this.saveData()/*this.props.navigation.navigate('Home')*/}>
                             <Text style={styles.buttonText}>INGRESAR</Text>
                             <Icon name="send" style={{marginLeft: 15, marginRight: 0}}/>
                         </Button>

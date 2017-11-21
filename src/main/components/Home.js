@@ -3,6 +3,8 @@ import {Alert} from 'react-native';
 
 import { StatusBar, StyleSheet } from "react-native";
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Badge } from "native-base";
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Thumbnail } from "native-base";
+import {LoyerHeader} from "./LoyerHeader";
 
 import renderIf from "../util/renderIf";
 import {color} from "../global/Color.js";
@@ -15,12 +17,13 @@ import IconBadge from 'react-native-icon-badge';
 export class Home extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             loading: true,
-            notifications: NotificationsHandler.countNewNotifications()
+            notifications: NotificationsHandler.countNewNotifications() //NOTIF
         };
 
-        setInterval(()=>{
+        setInterval(()=>{ //NOTIF
             this.setState({notifications:NotificationsHandler.countNewNotifications()})
         },500);
 
@@ -35,6 +38,8 @@ export class Home extends Component {
         return (
             <Container>
                 <PushNotificator />
+                <LoyerHeader {...this.props} />
+                /* NOTIF
                 <Header>
                     <Left>
                         <Button
@@ -46,17 +51,17 @@ export class Home extends Component {
                     <Body>
                     <Title>Loyer</Title>
                     </Body>
-                    <Right>                    
+                    <Right>
                         <Button
                             transparent
                             onPress={() => Alert.alert("Perfil de Usuario")}>
                             <Icon name="person" />
                         </Button>
-                        <IconBadge 
+                        <IconBadge
                             MainElement={
                                 <Button
                                 transparent
-                                onPress={() => this.props.navigation.navigate("Notifications")}>               
+                                onPress={() => this.props.navigation.navigate("Notifications")}>
                                     <Icon name="notifications" />
                                 </Button>
                             }
@@ -69,6 +74,7 @@ export class Home extends Component {
                     </Right>
 
                 </Header>
+                */
                 <Content padder>
                     <Text style={{fontSize:30,fontWeight:'bold',textAlign:'center'}}>Resumen de su día</Text>
                     <Card>
@@ -150,7 +156,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 156
     },
-    notificationsBadge: {
+    notificationsBadge: { //NOTIF
         width: 15,
         height: 15,
         minWidth: 15,

@@ -1,5 +1,7 @@
 import React from "react";
 
+import {AsyncStorage, Alert} from "react-native";
+
 import { ActionSheet, Container, Content, Text, List, ListItem, Left, Icon, Body, Thumbnail, H2 } from "native-base";
 import {color} from "../global/Color"
 
@@ -38,13 +40,16 @@ const routes_data = {
     "CloseSession" : {
         "icon" : "md-close-circle",
         "name" : "Cerrar Sesión",
-        "goto" : "Login",
+        "goto" : "deleteData",
     },
 
 };
 export class SideBar extends React.Component {
+    deleteData = function () {
+        AsyncStorage.setItem("Logged","false");
+    };
+
     render() {
-        console.log(this.props);
         return (
             <Container>
                 <Content>
@@ -59,8 +64,14 @@ export class SideBar extends React.Component {
                     <List
                         dataArray={routes}
                         renderRow={data => {
+                            let action = () => {
+                                this.props.navigation.navigate(routes_data[data].goto);
+                            };
+                            if (routes_data[data].goto === "deleteData") {
+                                action = () => {this.deleteData()};
+                            }
                             return (
-                                <ListItem style={{marginBottom:3,marginTop:3,backgroundColor: "transparent"}} icon button onPress={() => this.props.navigation.navigate(routes_data[data].goto)}>
+                                <ListItem style={{marginBottom:3,marginTop:3,backgroundColor: "transparent"}} icon button onPress={action}>
                                     <Left>
                                         <Icon style={{fontSize:22, color: color.secondary.light}} name={routes_data[data].icon} />
                                     </Left>

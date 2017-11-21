@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import {DrawerNavigator} from "react-navigation";
+import {DrawerNavigator, StackNavigator} from "react-navigation";
 import FCM from 'react-native-fcm';
 import {SideBar} from "./sidebar/SideBar";
 import {Login} from "./components/Login";
@@ -15,7 +15,11 @@ import CalendarScreen from "./components/CalendarScreen";
 import {Singup} from "./components/SingUp";
 import Customers from "./components/Customers";
 import Documents from "./components/Documents";
-import Notifications from "./components/Notifications";
+import CaseFile from "./components/CaseFile";
+import Document from "./components/Document";
+import NewDocument from "./components/NewDocument";
+import {AsyncStorage} from "react-native";
+import {LoyerHeader} from "./components/LoyerHeader";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -23,13 +27,25 @@ const LoyerApp = DrawerNavigator(
         CalendarScreen : {screen: CalendarScreen},
         Customers : {screen: Customers},
         Documents: {screen: Documents},
-        Login: { screen: Login },
-        Singup: { screen: Singup },
+        CaseFile: {screen: CaseFile},
+        Document: {screen: Document},
+        NewDocument: {screen: NewDocument},
         Notifications: { screen: Notifications }
     },
     {
+        initialRouteName : "Home",
+        contentComponent: props => <SideBar {...props} />,
+
+    }
+);
+
+const LoyerAppLogin = StackNavigator(
+    {
+        Login: { screen: Login },
+        Singup: { screen: Singup },
+    },{
         initialRouteName : "Login",
-        contentComponent: props => <SideBar {...props} />
+        headerMode: "None"
     }
 );
 
@@ -38,11 +54,21 @@ export default class App extends Component<{}> {
     super(props);
 
     this.state = {
-      token: "",
-      tokenCopyFeedback: ""
+        token: "",
+        tokenCopyFeedback: "",
+        logged : false
     }
+
+    AsyncStorage.setItem("Logged","false");
+
+    setInterval(()=>{
+      AsyncStorage.getItem("Logged").then((value) => {
+          this.setState({logged : (value === "true")});
+      });
+    },1000);
+
   }
-  
+
   componentDidMount(){
     FCM.getInitialNotification().then(notif => {
       this.setState({
@@ -79,11 +105,11 @@ export default class App extends Component<{}> {
       picture: 'https://firebase.google.com/_static/af7ae4b3fc/images/firebase/lockup.png'
     });
   }
-  
-  render() {
-    
-    return (
-      <LoyerApp />
-    );
-  }
+
+    render() {
+        if (this.state.logged) {
+            return <LoyerApp />;
+        }
+        return <LoyerAppLogin />;
+    }
 }

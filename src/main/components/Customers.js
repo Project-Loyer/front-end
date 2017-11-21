@@ -3,8 +3,51 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
 } from 'react-native';
-import { Container, Header, Content, List, ListItem, Text,Button , Icon, Left, Body, Right, Card, CardItem,Thumbnail} from 'native-base';
+import { Container, Header, Title, Content, List, ListItem, ListView, Text,Button , Icon, Left, Body, Right, Card, CardItem,Thumbnail} from 'native-base';
 import {color} from "../global/Color"
+import {LoyerHeader} from "./LoyerHeader";
+
+const customers = [
+    {
+        name: "Carlos",
+        lastName: "Fachinetti",
+        avatar : require("../images/cfachinetti.jpg"),
+        cases: 2,
+        address: "Rawson, Buenos Aires, Argentina",
+        documents: 30,
+        dateNextEvent: "13 de diciembre"
+    },
+    {
+        name: "Juan Carlos",
+        lastName: "Cané",
+        avatar : require("../images/juancane.jpg"),
+        pendingActivities: 1,
+        cases: 1,
+        address: "Chivilcoy, Buenos Aires, Argentina",
+        documents: 5,
+        dateNextEvent: "25 de noviembre"
+    },
+    {
+        name: "Amado",
+        lastName: "Boudou",
+        avatar : require("../images/amado.jpg"),
+        pendingActivities: 1,
+        cases: 8,
+        address: "Descampado, Argentina",
+        documents: 250,
+        dateNextEvent: "12 de diciembre"
+    },
+    {
+        name: "Julio",
+        lastName: "Barbosco",
+        avatar : require("../images/avatarDefault.png"),
+        pendingActivities: 0,
+        cases: 1,
+        address: "Junin, Buenos aires, Argentina",
+        documents: 3,
+        dateNextEvent: "5 de enero de 2018"
+    }
+];
 
 export default class Customers extends Component {
     constructor(props) {
@@ -17,114 +60,68 @@ export default class Customers extends Component {
     render() {
         return (
             <Container>
-                <Header />
+                <LoyerHeader {...this.props} title={"Clientes"}/>
                 <Content>
-                    <Card>
-                        <CardItem>
-                            <Left>
-                                <Icon name={'person'} style={{paddingRight:10}}/>
-                                <Body>
-                                    <Text>Carlos Fachinetti</Text>
-                                    <Text note>No hay actividad pendiente</Text>
-                                </Body>
-                            </Left>
-                            <Icon name={'md-checkmark-circle'} style={styles.iconCustomerOk}/>
-                        </CardItem>
-                        <CardItem cardBody>
-                            <List>
-                                <ListItem icon>
-                                    <Left>
-                                        <Icon name="md-bookmarks" />
-                                    </Left>
-                                    <Body>
-                                    <Text>2 Casos</Text>
-                                    </Body>
-                                </ListItem>
-                                <ListItem icon>
-                                    <Left>
-                                        <Icon name="md-pin" />
-                                    </Left>
-                                    <Body>
-                                    <Text>Rawson, Buenos Aires, Argentina</Text>
-                                    </Body>
-                                </ListItem>
-                                <ListItem icon>
-                                    <Left>
-                                        <Icon name="md-paper" />
-                                    </Left>
-                                    <Body>
-                                    <Text>30 documentos</Text>
-                                    </Body>
-                                </ListItem>
-                                <ListItem icon>
-                                    <Left>
-                                        <Icon name="md-calendar" />
-                                    </Left>
-                                    <Body>
-                                    <Text>Próximo evento 12 de diciembre</Text>
-                                    </Body>
-                                </ListItem>
-                            </List>
-                        </CardItem>
-                        <CardItem>
-                            <Button block style={styles.primaryButton}>
-                                <Text>Ver cliente</Text>
-                            </Button>
-                        </CardItem>
-                    </Card>
-                    <Card>
-                        <CardItem>
-                            <Left>
-                                <Icon name={'person'} style={{paddingRight:10}}/>
-                                <Body>
-                                <Text>Juan Carlos Cané</Text>
-                                <Text note style={{color: "red"}}>Hay actividad pendiente</Text>
-                                </Body>
-                            </Left>
-                            <Icon name={'md-information-circle'} style={styles.iconCustomerAlert}/>
-                        </CardItem>
-                        <CardItem cardBody>
-                            <List>
-                                <ListItem icon>
-                                    <Left>
-                                        <Icon name="md-bookmarks" />
-                                    </Left>
-                                    <Body>
-                                    <Text>2 Casos</Text>
-                                    </Body>
-                                </ListItem>
-                                <ListItem icon>
-                                    <Left>
-                                        <Icon name="md-pin" />
-                                    </Left>
-                                    <Body>
-                                    <Text>Rawson, Buenos Aires, Argentina</Text>
-                                    </Body>
-                                </ListItem>
-                                <ListItem icon>
-                                    <Left>
-                                        <Icon name="md-paper" />
-                                    </Left>
-                                    <Body>
-                                    <Text>30 Documentos</Text>
-                                    </Body>
-                                </ListItem>
-                                <ListItem icon>
-                                    <Left>
-                                        <Icon name="md-calendar" />
-                                    </Left>
-                                    <Body>
-                                    <Text>Próximo evento 12 de diciembre</Text>
-                                    </Body>
-                                </ListItem>
-                            </List>
-                        </CardItem>
-                        <CardItem>
-                            <Button block style={styles.primaryButton}>
-                                <Text>Ver cliente</Text>
-                            </Button>
-                        </CardItem>
-                    </Card>
+                    <List
+                        dataArray={customers}
+                        renderRow={ customer => {
+                            return (
+                                <Card>
+                                    <CardItem>
+                                        <Left>
+                                            <Thumbnail source={customer.avatar} />
+                                            <Body>
+                                            <Text>{customer.name} {customer.lastName}</Text>
+                                            <Text style={customer.pendingActivities ? styles.textPendingActivities : styles.textNoPendingActivities} note>{customer.pendingActivities ? "Tiene actividad pendiente" : "No hay actividad pendiente"}</Text>
+                                            </Body>
+                                        </Left>
+                                        <Icon name={ customer.pendingActivities ? 'md-information-circle' : 'md-checkmark-circle'} style={customer.pendingActivities ? styles.iconCustomerAlert : styles.iconCustomerOk} />
+                                    </CardItem>
+                                    <CardItem cardBody>
+                                        <List style={{width:"100%"}}>
+                                            <ListItem icon >
+                                                <Left>
+                                                    <Icon name="md-bookmarks" />
+                                                </Left>
+                                                <Body>
+                                                <Text style={{color:color.secondary.light}}>{customer.cases} Casos</Text>
+                                                </Body>
+                                            </ListItem>
+                                            <ListItem icon>
+                                                <Left>
+                                                    <Icon name="md-pin" />
+                                                </Left>
+                                                <Body>
+                                                <Text style={{color:color.secondary.light}}>{customer.address}</Text>
+                                                </Body>
+                                            </ListItem>
+                                            <ListItem icon>
+                                                <Left>
+                                                    <Icon name="md-paper" />
+                                                </Left>
+                                                <Body>
+                                                <Text style={{color:color.secondary.light}}>{customer.documents} documentos</Text>
+                                                </Body>
+                                            </ListItem>
+                                            <ListItem icon>
+                                                <Left>
+                                                    <Icon name="md-calendar" />
+                                                </Left>
+                                                <Body>
+                                                <Text style={{color:color.secondary.light}}>Próximo evento {customer.dateNextEvent}</Text>
+                                                </Body>
+                                            </ListItem>
+                                        </List>
+                                    </CardItem>
+                                    <CardItem>
+                                        <Button block style={styles.primaryButton}>
+                                            <Text>Ver cliente</Text>
+                                        </Button>
+                                    </CardItem>
+                                </Card>
+                            );
+                        }}
+                    />
                 </Content>
             </Container>
         );
@@ -144,5 +141,11 @@ const styles = StyleSheet.create({
     primaryButton: {
         backgroundColor: color.secondary.light,
         flex: 1,
+    },
+    textPendingActivities: {
+        color : "#ff0800"
+    },
+    textNoPendingActivities: {
+        color: "#9a9a9a"
     }
 });
