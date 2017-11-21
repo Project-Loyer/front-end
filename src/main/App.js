@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import {DrawerNavigator} from "react-navigation";
+import {DrawerNavigator, StackNavigator} from "react-navigation";
 import {SideBar} from "./sidebar/SideBar";
 import {Login} from "./components/Login";
 import {Home} from "./components/Home";
@@ -16,6 +16,7 @@ import Documents from "./components/Documents";
 import CaseFile from "./components/CaseFile";
 import Document from "./components/Document";
 import NewDocument from "./components/NewDocument";
+import {AsyncStorage} from "react-native";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -26,17 +27,46 @@ const LoyerApp = DrawerNavigator(
         CaseFile: {screen: CaseFile},
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
-        Login: { screen: Login },
-        Singup: { screen: Singup }
+
     },
     {
-        initialRouteName : "Login",
+        initialRouteName : "Home",
         contentComponent: props => <SideBar {...props} />
     }
 );
 
+const LoyerAppLogin = StackNavigator(
+    {
+        Login: { screen: Login },
+        Singup: { screen: Singup }
+    },{
+        initialRouteName : "Login",
+        headerMode: "None"
+    }
+);
+
 export default class App extends Component<{}> {
-  render() {
-    return <LoyerApp />;
-  }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          logged : false
+        };
+
+        AsyncStorage.setItem("Logged","false");
+
+        setInterval(()=>{
+            AsyncStorage.getItem("Logged").then((value) => {
+                this.setState({logged : (value === "true")});
+            });
+        },1000);
+
+    }
+
+    render() {
+        if (this.state.logged) {
+            return <LoyerApp />;
+        }
+        return <LoyerAppLogin />;
+    }
 }
