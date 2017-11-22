@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Text, Container, Header, Content, List, ListItem, Icon, Left, Body, Separator } from 'native-base';
 import { color } from '../global/Color.js';
 import NotificationsHandler from '../global/NotificationsHandler.js';
+import {LoyerHeader} from "./LoyerHeader";
 
 export default class Notifications extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ export default class Notifications extends Component {
         }
         return (
             <Container>
-                <Header />
+                <LoyerHeader {...this.props} title={"Notificaciones"}/>
                 <Content>
                     {rows}
                 </Content>

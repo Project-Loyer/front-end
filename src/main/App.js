@@ -1,11 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import {DrawerNavigator, StackNavigator} from "react-navigation";
 import FCM from 'react-native-fcm';
 import {SideBar} from "./sidebar/SideBar";
@@ -19,7 +12,7 @@ import CaseFile from "./components/CaseFile";
 import Document from "./components/Document";
 import NewDocument from "./components/NewDocument";
 import {AsyncStorage} from "react-native";
-import {LoyerHeader} from "./components/LoyerHeader";
+import Notifications from "./components/Notifications"
 
 const LoyerApp = DrawerNavigator(
     {
@@ -57,7 +50,7 @@ export default class App extends Component<{}> {
         token: "",
         tokenCopyFeedback: "",
         logged : false
-    }
+    };
 
     AsyncStorage.setItem("Logged","false");
 

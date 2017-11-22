@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import {Alert} from 'react-native';
 
-import { StatusBar, StyleSheet } from "react-native";
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Badge } from "native-base";
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Thumbnail } from "native-base";
+import { StyleSheet } from "react-native";
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Badge, Thumbnail } from "native-base";
 import {LoyerHeader} from "./LoyerHeader";
+
 
 import renderIf from "../util/renderIf";
 import {color} from "../global/Color.js";
-import NotificationsHandler from '../global/NotificationsHandler.js';
 
-import {PushNotificator} from '../util/PushNotificator';
-
-import IconBadge from 'react-native-icon-badge';
 
 export class Home extends Component {
     constructor(props) {
@@ -20,12 +15,7 @@ export class Home extends Component {
 
         this.state = {
             loading: true,
-            notifications: NotificationsHandler.countNewNotifications() //NOTIF
         };
-
-        setInterval(()=>{ //NOTIF
-            this.setState({notifications:NotificationsHandler.countNewNotifications()})
-        },500);
 
         this.closeActivityIndicator = () => setTimeout(() => {
             this.setState({ loading: false });
@@ -37,44 +27,7 @@ export class Home extends Component {
     render() {
         return (
             <Container>
-                <PushNotificator />
                 <LoyerHeader {...this.props} />
-                /* NOTIF
-                <Header>
-                    <Left>
-                        <Button
-                            transparent
-                            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                            <Icon name="menu" />
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Loyer</Title>
-                    </Body>
-                    <Right>
-                        <Button
-                            transparent
-                            onPress={() => Alert.alert("Perfil de Usuario")}>
-                            <Icon name="person" />
-                        </Button>
-                        <IconBadge
-                            MainElement={
-                                <Button
-                                transparent
-                                onPress={() => this.props.navigation.navigate("Notifications")}>
-                                    <Icon name="notifications" />
-                                </Button>
-                            }
-                            BadgeElement={
-                                <Text style={styles.notificationsBadgeNumber}>{this.state.notifications}</Text>
-                            }
-                            IconBadgeStyle={styles.notificationsBadge}
-                            Hidden={this.state.notifications === 0}
-                        />
-                    </Right>
-
-                </Header>
-                */
                 <Content padder>
                     <Text style={{fontSize:30,fontWeight:'bold',textAlign:'center'}}>Resumen de su día</Text>
                     <Card>
