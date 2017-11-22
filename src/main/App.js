@@ -42,6 +42,7 @@ const LoyerAppLogin = StackNavigator(
     }
 );
 
+
 export default class App extends Component<{}> {
   constructor(props) {
     super(props);
