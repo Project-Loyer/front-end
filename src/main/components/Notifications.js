@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, Container, Header, Content, List, ListItem, Icon, Left, Body, Separator } from 'native-base';
+import { Title, Text, Container, Header, Content, List, ListItem, Icon, Left, Body, Right, Separator, Button } from 'native-base';
 import { color } from '../global/Color.js';
 import NotificationsHandler from '../global/NotificationsHandler.js';
 import {LoyerHeader} from "./LoyerHeader";
+import {PushNotificator} from "../util/PushNotificator"
 
 export default class Notifications extends Component {
     constructor(props) {
         super(props);
+    }
 
-        setTimeout(()=>{
-            NotificationsHandler.markAsRead();
-        },2000);
+    componentDidMount() {
+        NotificationsHandler.markAsRead();
     }
 
     render() {
@@ -39,7 +40,7 @@ export default class Notifications extends Component {
         }
         return (
             <Container>
-                <LoyerHeader {...this.props} title={"Notificaciones"}/>
+                <LoyerHeader title={"Notificaciones"} goBack {...this.props}/>
                 <Content>
                     {rows}
                 </Content>

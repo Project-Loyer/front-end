@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from "react-native";
 import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Card, CardItem, Spinner, Badge, Thumbnail } from "native-base";
 import {LoyerHeader} from "./LoyerHeader";
-
+import Color from 'react-native-material-color';
 
 import renderIf from "../util/renderIf";
 import {color} from "../global/Color.js";
@@ -71,6 +71,24 @@ export class Home extends Component {
                             <Right>
                                 <Icon name="arrow-forward" />
                             </Right>
+                        </CardItem>
+                    </Card>
+                    <Text style={{fontSize:30,fontWeight:'bold',textAlign:'center'}}>Resumen del Mes</Text>
+                    <Card>
+                        <CardItem>
+                            <Left>
+                                <Icon name="md-analytics" />
+                                <Body>
+                                <Text style={{color:Color.Green,fontWeight: 'bold'}}>4 Nuevos clientes</Text>
+                                </Body>
+                            </Left>
+                        </CardItem>
+                        <CardItem>
+                            <Body>
+                            <Text>
+                                <Text style={{fontWeight: 'bold'}}>Carlos F.</Text>, <Text style={{fontWeight: 'bold'}}>Juan Carlos C.</Text> y <Text style={{fontWeight: 'bold'}}>Amado B.</Text> han solicitado tus servicios este mes.
+                            </Text>
+                            </Body>
                         </CardItem>
                     </Card>
                 </Content>

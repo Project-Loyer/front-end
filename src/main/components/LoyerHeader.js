@@ -4,6 +4,7 @@ import {PushNotificator} from "../util/PushNotificator";
 import NotificationsHandler from '../global/NotificationsHandler.js';
 import { StyleSheet } from "react-native";
 import IconBadge from 'react-native-icon-badge';
+import renderIf from "../util/renderIf";
 
 export class LoyerHeader extends Component<{}> {
     constructor(props) {
@@ -13,46 +14,56 @@ export class LoyerHeader extends Component<{}> {
             notifications: NotificationsHandler.countNewNotifications()
         };
 
-        setInterval(()=>{
+        this.interval = setInterval(()=>{
             this.setState({notifications:NotificationsHandler.countNewNotifications()})
-        },500);
+        },100);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     render() {
+        let leftAction = this.props.goBack ? this.props.navigation.goBack : () => {this.props.navigation.navigate("DrawerOpen")};
         return (
                 <Header>
                     <PushNotificator />
                     <Left>
                         <Button
                             transparent
-                            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                            <Icon name="menu"/>
+                            onPress={() => leftAction()}>
+                            <Icon name={this.props.goBack ? "md-arrow-back" : "menu"}/>
                         </Button>
                     </Left>
                     <Body>
                     <Title>{this.props.title ? this.props.title : "Loyer"}</Title>
                     </Body>
-                    <Right>
-                        <Button
-                            transparent
-                            onPress={() => Alert.alert("Perfil de Usuario")}>
-                            <Thumbnail small source={{uri: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg'}}/>
-                        </Button>
-                        <IconBadge
-                            MainElement={
-                                <Button
-                                    transparent
-                                    onPress={() => this.props.navigation.navigate("Notifications")}>
-                                    <Icon name="notifications" />
-                                </Button>
-                            }
-                            BadgeElement={
-                                <Text style={styles.notificationsBadgeNumber}>{this.state.notifications}</Text>
-                            }
-                            IconBadgeStyle={styles.notificationsBadge}
-                            Hidden={this.state.notifications === 0}
-                        />
-                    </Right>
+                    {renderIf(this.props.goBack)(
+                        <Right/>
+                    )}
+                    {renderIf(!this.props.goBack)(
+                        <Right>
+                            <Button
+                                transparent
+                                onPress={() => Alert.alert("Perfil de Usuario")}>
+                                <Thumbnail small source={{uri: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg'}}/>
+                            </Button>
+                            <IconBadge
+                                MainElement={
+                                    <Button
+                                        transparent
+                                        onPress={() => this.props.navigation.navigate("Notifications")}>
+                                        <Icon name="notifications" />
+                                    </Button>
+                                }
+                                BadgeElement={
+                                    <Text style={styles.notificationsBadgeNumber}>{this.state.notifications}</Text>
+                                }
+                                IconBadgeStyle={styles.notificationsBadge}
+                                Hidden={this.state.notifications === 0}
+                            />
+                        </Right>
+                    )}
                 </Header>
         );
     }
