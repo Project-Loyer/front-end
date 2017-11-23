@@ -11,29 +11,36 @@ class NotificationsHandler {
     constructor() {
         this.notifications = [
             {
-                title: "Mensaje de cliente!",
+                title: "Juan Farías",
+                avatar: require("../images/cfachinetti.jpg"),
                 type: "Mensaje de Cliente",
-                body: "Buenos días, quería preguntarle si está disponible para un caso de divorcio. Mi nombre es Juan. Gracias",
+                body: "Por favor, necesito divorciarme urgente. Gracias",
                 priority: 'Medium',
+                time: "5:12 am",
                 date: 10000,
                 seen: false
             },
             
             {
-                title: "Mensaje de cliente!",
+                title: "María Grispe",
+                avatar: require("../images/maria.jpg"),
                 type: "Mensaje de Cliente",
-                body: "Buenos días, quería preguntarle si está disponible para un caso de homicidio. Mi nombre es María. Gracias",
+                body: "Buenos días, quería preguntarle si está disponible para un caso de homicidio. Gracias",
                 priority: 'Medium',
+                time: "3:43 pm",
                 date: 10020,
                 seen: false
             },
             
             {
-                title: "Fecha de cobro!",
+                title: "Recuerda cobrarle hoy a Juan Pedro Vilol",
                 type: "Calendario",
                 body: "Desde el equipo de Loyer queríamos recordarle que hoy vence la fecha de cobro de su cliente Juan Pedro.",
+                time: "2 horas restantes",
                 priority: 'Medium',
                 date: 10000,
+                icon: 'md-cash',
+                colorIcon: '#ff0800',
                 seen: false
             }
         ];
