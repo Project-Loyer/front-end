@@ -5,6 +5,7 @@ import NotificationsHandler from '../global/NotificationsHandler.js';
 import { StyleSheet } from "react-native";
 import IconBadge from 'react-native-icon-badge';
 import renderIf from "../util/renderIf";
+import {Alert} from "react-native";
 
 export class LoyerHeader extends Component<{}> {
     constructor(props) {
