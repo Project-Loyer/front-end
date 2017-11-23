@@ -25,9 +25,9 @@ export class LoyerHeader extends Component<{}> {
     }
 
     render() {
-        let leftAction = this.props.goBack ? this.props.navigation.goBack : () => {this.props.navigation.navigate("DrawerOpen")};
+        let leftAction = this.props.goBack ? (typeof this.props.goBack === 'function' ? this.props.goBack : this.props.navigation.goBack) : () => {this.props.navigation.navigate("DrawerOpen")};
         return (
-                <Header>
+                <Header style={this.props.noElevation ? {elevation:0} : {}}>
                     <PushNotificator />
                     <Left>
                         <Button

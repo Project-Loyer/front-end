@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {DrawerNavigator, StackNavigator} from "react-navigation";
+import {Container} from "native-base";
 import FCM from 'react-native-fcm';
 import {SideBar} from "./sidebar/SideBar";
 import {Login} from "./components/Login";
@@ -9,6 +10,7 @@ import {Singup} from "./components/SingUp";
 import Customers from "./components/Customers";
 import Documents from "./components/Documents";
 import CaseFile from "./components/CaseFile";
+import CaseFiles from "./components/CaseFiles";
 import Document from "./components/Document";
 import NewDocument from "./components/NewDocument";
 import {AsyncStorage} from "react-native";
@@ -21,6 +23,7 @@ const LoyerApp = DrawerNavigator(
         Customers : {screen: Customers},
         Documents: {screen: Documents},
         CaseFile: {screen: CaseFile},
+        CaseFiles : {screen : CaseFiles},
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
         Notifications: { screen: Notifications }
@@ -50,16 +53,18 @@ export default class App extends Component<{}> {
     this.state = {
         token: "",
         tokenCopyFeedback: "",
-        logged : false
+        logged : false,
+        isLoading : true,
     };
 
-    AsyncStorage.setItem("Logged","false");
-
-    setInterval(()=>{
-      AsyncStorage.getItem("Logged").then((value) => {
-          this.setState({logged : (value === "true")});
-      });
-    },1000);
+    setInterval(() => {
+        AsyncStorage.getItem("Logged").then((value) => {
+            this.setState({
+                logged : (value === "true"),
+                isLoading: false
+            });
+        });
+    },100);
 
   }
 
@@ -101,9 +106,9 @@ export default class App extends Component<{}> {
   }
 
     render() {
-        if (this.state.logged) {
-            return <LoyerApp />;
+        if (this.state.isLoading) {
+            return <Container/>;
         }
-        return <LoyerAppLogin />;
+        return this.state.logged ? <LoyerApp/> : <LoyerAppLogin />;
     }
 }

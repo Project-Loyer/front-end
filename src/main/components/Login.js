@@ -9,16 +9,35 @@ import {
     TouchableHighlight,
     View
 } from 'react-native';
-import {Button, Icon} from "native-base";
+import {Button, Icon, Container, Content, Spinner} from "native-base";
 import {color} from "../global/Color";
 import {AsyncStorage} from "react-native";
 
 export class Login extends Component<{}> {
+    constructor(props) {
+        super(props);
+        this.state = {
+          starting : false
+        };
+    }
+
     saveData = function() {
         AsyncStorage.setItem("Logged","true");
+        this.setState({starting:true});
     };
 
     render() {
+        if (this.state.starting) {
+            return (
+                <Container>
+                    <Content marginTop="20%">
+                        <Text style={{alignSelf:"center",fontSize:40,marginBottom:"30%"}}>Bienvenidos a <Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text></Text>
+                        <Spinner color={color.primary.dark} />
+                        <Text style={{alignSelf:"center"}}>Iniciando sesión...</Text>
+                    </Content>
+                </Container>
+            );
+        }
         return (
             <ScrollView contentContainerStyle={[styles.container,{height:"100%"}]}>
                 <Text style={{fontSize:40}}>Bienvenidos a </Text><Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text>

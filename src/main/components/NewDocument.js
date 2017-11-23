@@ -4,6 +4,8 @@ import {
     Body, Button, Container, Content, Form, Header, Icon, Input, Item, Label, Left, Right, Switch, Text, Title, View
 } from "native-base";
 import Moment from 'moment';
+import FileMock from "../mock/Files";
+import {LoyerHeader} from "./LoyerHeader";
 
 export default class NewDocument extends Component {
     constructor(props) {
@@ -14,35 +16,25 @@ export default class NewDocument extends Component {
                 content: '',
                 date: 'Justo ahora',
                 owner: 'Burlando',
-                caseFile: props.navigation.state.params.caseFile
+                caseFile: props.navigation.state.params.caseFile.id,
             },
             shared: true
         };
     }
 
+
     saveDocument() {
         let date = Moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-        this.setState(
-            {document: {...this.state.document, "date" : date } },
-            () => this.props.navigation.navigate("Documents", {newDoc: this.state.document})
-        );
+        FileMock.addDocument({...this.state.document,date:date});
+        this.props.navigation.navigate("CaseFile", {file: FileMock.getCaseFile(this.state.document.caseFile)});
     }
 
     render() {
+        let navigationParams = this.props.navigation.state.params;
+        let goBackAction = (navigationParams && navigationParams.goBack) ? navigationParams.goBack : null;
         return (
             <Container>
-                <Header>
-                    <Left>
-                        <Button
-                            transparent
-                            onPress={() => this.props.navigation.navigate("Documents")}>
-                            <Icon name="arrow-back" />
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Nuevo documento</Title>
-                    </Body>
-                </Header>
+                <LoyerHeader goBack={goBackAction} title={"Nuevo documento"} />
                 <Content style={styles.container}>
                     <Form>
                         <Item floatingLabel style={styles.titleInput}>
@@ -79,7 +71,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'flex-start',
         paddingVertical: 12,
         paddingHorizontal: 24
     },

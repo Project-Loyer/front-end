@@ -5,25 +5,10 @@ import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text
 import {LoyerHeader} from "./LoyerHeader";
 import Color from 'react-native-material-color';
 
-import renderIf from "../util/renderIf";
-import {color} from "../global/Color.js";
 
 
 export class Home extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            loading: true,
-        };
-
-        this.closeActivityIndicator = () => setTimeout(() => {
-            this.setState({ loading: false });
-        }, 2000);
-    }
-
-    componentDidMount = () => this.closeActivityIndicator();
-    componentWillUnmount = () => this.setState({loading: true});
     render() {
         return (
             <Container>
@@ -79,7 +64,7 @@ export class Home extends Component {
                             <Left>
                                 <Icon name="md-analytics" />
                                 <Body>
-                                <Text style={{color:Color.Green,fontWeight: 'bold'}}>4 Nuevos clientes</Text>
+                                <Text style={{color:Color.Green,fontWeight: 'bold'}}>3 Nuevos clientes</Text>
                                 </Body>
                             </Left>
                         </CardItem>
@@ -93,24 +78,8 @@ export class Home extends Component {
                     </Card>
                 </Content>
             </Container>
-        )};
-    renderHome = () => {
-
-
-        return (
-            <Container>
-                {renderIf(this.state.loading)(
-                    <Content marginTop="50%">
-                        <Spinner color={color.primary.dark} />
-                    </Content>
-                )}
-
-                {renderIf(!this.state.loading)(
-                    renderHome
-                )}
-            </Container>
-        );
-    }
+        )
+    };
 }
 
 const styles = StyleSheet.create({

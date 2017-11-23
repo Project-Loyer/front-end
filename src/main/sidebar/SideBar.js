@@ -5,7 +5,7 @@ import {AsyncStorage, Alert} from "react-native";
 import { ActionSheet, Container, Content, Text, List, ListItem, Left, Icon, Body, Thumbnail, H2 } from "native-base";
 import {color} from "../global/Color"
 
-const routes = ["Home","Customers","Calendar","Documents","Records","Notes","CloseSession"];
+const routes = ["Home","Customers","Calendar","Documents","CaseFiles","Notes","CloseSession"];
 const routes_data = {
     "Home" : {
         "icon" : "home",
@@ -27,10 +27,10 @@ const routes_data = {
         "name" : "Documentos",
         "goto" : "Documents",
     },
-    "Records" : {
+    "CaseFiles" : {
         "icon" : "md-paper",
         "name" : "Expedientes",
-        "goto" : "Home",
+        "goto" : "CaseFiles",
     },
     "Notes" : {
         "icon" : "md-bookmarks",

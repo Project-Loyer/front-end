@@ -6,49 +6,74 @@ import {
     StyleSheet,
     Alert,
 } from 'react-native';
-import { Container, Content } from 'native-base';
+import { Container, Content, Spinner } from 'native-base';
 import {LoyerHeader} from "./LoyerHeader";
 import {color} from "../global/Color"
 
 import { Agenda } from 'react-native-calendars';
 import Color from "react-native-material-color";
 
+import {LocaleConfig} from 'react-native-calendars';
+import renderIf from "../util/renderIf";
+
+LocaleConfig.locales['es'] = {
+    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+    monthNamesShort: ['Ene','Feb','Mar.','Abr.','May.','Jun.','Jul.','Ago.','Sept.','Oct.','Nov.','Dic.'],
+    dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
+    dayNamesShort: ['Dom.','Lun.','Mar.','Mier.','Ju.','Vi.','Sab.']
+};
+
+LocaleConfig.defaultLocale = 'es';
+
 export default class CalendarScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: {}
+            items: {},
+            isLoading : true
         };
+        this.loadItems(new Date().getTime())
     }
 
     render() {
+        if (this.state.isLoading){
+            return (
+              <Container>
+                  <LoyerHeader {...this.props} goBack title={"Calendario"}/>
+                  <Content style={{marginTop:"40%"}}>
+                        <Spinner color={color.primary.color} style={{alignSelf:"center",height: 50, width: 50}} />
+                  </Content>
+              </Container>
+            );
+        }
         return (
             <Container>
                 <LoyerHeader {...this.props} goBack title={"Calendario"}/>
-                <Content>
+                <Content style={{minHeight: "100%"}}>
                     <Agenda
+                        style={{minHeight:"100%"}}
                         // the list of items that have to be displayed in agenda. If you want to render item as empty date
                         // the value of date key kas to be an empty array []. If there exists no value for date key it is
                         // considered that the date in question is not yet loaded
                         items={this.state.items}
                         // callback that gets called when items for a certain month should be loaded (month became visible)
-                        //loadItemsForMonth={this.loadItems.bind(this)}
+                        loadItemsForMonth={this.loadItems.bind(this)}
                         // callback that fires when the calendar is opened or closed
                         //onCalendarToggled={(calendarOpened) => {console.log(calendarOpened)}}
                         // callback that gets called on day press
-                        onDayPress={(day)=>{this.loadItems(day)}}
+                        //onDayPress={(day)=>{this.loadItems(day)}}
                         // callback that gets called when day changes while scrolling agenda list
                         //onDayChange={(day)=>{Alert.alert('day changed')}}
                         // initially selected day
                         selected={this.timeToString()}
                         // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-                        //minDate={'2012-05-10'}
+                        minDate={'1994-01-01'}
                         // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-                        //maxDate={'2012-05-30'}
+                        maxDate={'2050-12-31'}
                         // Max amount of months allowed to scroll to the past. Default = 50
-                        pastScrollRange={4}
+                        //pastScrollRange={1}
                         // Max amount of months allowed to scroll to the future. Default = 50
-                        futureScrollRange={4}
+                        //futureScrollRange={1}
                         // specify how each item should be rendered in agenda
                         renderItem={this.renderItem.bind(this)}
                         // specify how each date should be rendered. day can be undefined if the item is not first in that day.
@@ -56,7 +81,7 @@ export default class CalendarScreen extends Component {
                         // specify how empty date content with no items should be rendered
                         renderEmptyDate={this.renderEmptyDate.bind(this)}
                         // specify how agenda knob should look like
-                        renderKnob={() => {return (<View />);}}
+                        renderKnob={() => {return (<View style={styles.knob}/>);}}
                         // specify your item comparison function for increased performance
                         rowHasChanged={this.rowHasChanged.bind(this)}
                         // Hide knob button. Default = false
@@ -70,6 +95,9 @@ export default class CalendarScreen extends Component {
     }
 
     loadItems(day) {
+        if (this.state.items.isLoading) {
+            return;
+        }
         setTimeout(() => {
             for (let i = -3; i < 10; i++) {
                 const time = day.timestamp + i * 24 * 60 * 60 * 1000;
@@ -79,7 +107,7 @@ export default class CalendarScreen extends Component {
                     const numItems = Math.floor(Math.random() * 2);
                     for (let j = 0; j < numItems; j++) {
                         this.state.items[strTime].push({
-                            name: 'Item for ' + strTime,
+                            name: 'Tarea del ' + strTime,
                             height: Math.max(50, Math.floor(Math.random() * 150))
                         });
                     }
@@ -89,9 +117,10 @@ export default class CalendarScreen extends Component {
             const newItems = {};
             Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
             this.setState({
-                items: newItems
+                items: newItems,
+                isLoading : false
             });
-        }, 200);
+        }, 100);
         // console.log(`Load Items for ${day.year}-${day.month}`);
     }
 
@@ -103,7 +132,7 @@ export default class CalendarScreen extends Component {
 
     renderEmptyDate() {
         return (
-            <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
+            <View style={styles.emptyDate}><Text>No hay ninguna tarea :)</Text></View>
         );
     }
 
@@ -126,6 +155,14 @@ const styles = StyleSheet.create({
         padding: 10,
         marginRight: 10,
         marginTop: 10
+    },
+    knob : {
+        width: 50,
+        height: 10,
+        marginTop: 10,
+        marginBottom: 5,
+        borderRadius: 3,
+        backgroundColor: color.secondary.light
     },
     emptyDate: {
         height: 15,
