@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
 } from 'react-native';
-import { Container, Header, Title, Content, List, ListItem, ListView, Text,Button , Icon, Left, Body, Right, Card, CardItem,Thumbnail} from 'native-base';
+import { Container, Header, Title, Content, List, ListItem, ListView, Text,Button , Icon, Left, Body, Right, Card, CardItem,Thumbnail,Fab } from 'native-base';
 import {color} from "../global/Color"
 import {LoyerHeader} from "./LoyerHeader";
 
@@ -28,14 +28,14 @@ const customers = [
         dateNextEvent: "25 de noviembre"
     },
     {
-        name: "Amado",
-        lastName: "Boudou",
-        avatar : require("../images/amado.jpg"),
+        name: "Esteban",
+        lastName: "Cario",
+        avatar : require("../images/cario.jpg"),
         pendingActivities: 1,
         cases: 8,
-        address: "Descampado, Argentina",
+        address: "Carmen de Areco, Buenos Aires, Argentina",
         documents: 250,
-        dateNextEvent: "12 de diciembre"
+        dateNextEvent: "6 de febrero"
     },
     {
         name: "Julio",
@@ -61,6 +61,9 @@ export default class Customers extends Component {
         return (
             <Container>
                 <LoyerHeader {...this.props} title={"Clientes"}/>
+                <Button icon style={{width:58,height:58,borderRadius:30,position:"absolute",bottom: 10,right: 10,backgroundColor:color.primary.dark}}>
+                    <Icon name='md-person-add' />
+                </Button>
                 <Content>
                     <List
                         dataArray={customers}
