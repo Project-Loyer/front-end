@@ -37,7 +37,7 @@ export class LoyerHeader extends Component<{}> {
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={{textAlign: "center",width:"100%",marginLeft:33}}>{this.props.title ? this.props.title : "Loyer"}</Title>
+                        <Title style={{textAlign: "left",width:"100%",marginLeft:-30}}>{this.props.title ? this.props.title : "Loyer"}</Title>
                     </Body>
                     {renderIf(this.props.goBack)(
                         <Right/>

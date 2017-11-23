@@ -39,7 +39,7 @@ export default class CaseFile extends Component {
                         })
                     })}
                     firstItem={`Documentos del expediente ${this.state.file.id}`}
-                    fileProps={{title:'title'}}
+                    fileProps={{title:'title',tag:'approved'}}
                 />
 
 

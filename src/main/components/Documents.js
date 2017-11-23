@@ -71,7 +71,7 @@ export default class Documents extends Component {
                             filesArray={this.state.recentDocuments}
                             onPressAction={(doc) => this.props.navigation.navigate('Document', {document: doc})}
                             firstItem={"RECIENTES"}
-                            fileProps={{title:'title'}}
+                            fileProps={{title:'title',tag:'approved'}}
                         />
                     </Tab>
                     <Tab heading={ <TabHeading><Icon name="md-search" /><Text>Buscador</Text></TabHeading>}>
@@ -92,7 +92,7 @@ export default class Documents extends Component {
                                         }
                                     })}
                                     firstItem={"Documentos encontrados"}
-                                    fileProps={{title:'title'}}
+                                    fileProps={{title:'title',tag:'approved'}}
                                 />
                             )}
                         </Content>

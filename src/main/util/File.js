@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Tabs, Tab, TabHeading, Item, Label,Input, Body, Button, Container, Content, Header, Icon, Left, List, ListItem, Right, Text, Title} from "native-base";
+import {Tabs, Badge, Tab, TabHeading, Item, Label,Input, Body, Button, Container, Content, Header, Icon, Left, List, ListItem, Right, Text, Title} from "native-base";
 import renderIf from "../util/renderIf";
+import Color from "react-native-material-color";
 
 export class FileList extends Component {
     constructor(props) {
@@ -27,7 +28,14 @@ export class FileList extends Component {
                     renderRow={(file) =>
                         <ListItem button onPress={()=>onPressAction(file)}>
                             <Left>
-                                <Text>{file[fileProps.title]}</Text>
+                                <Text>
+                                    {file[fileProps.title]}
+                                </Text>
+                                {renderIf(fileProps.tag && file[fileProps.tag])(
+                                    <Badge style={{ marginLeft: 10,backgroundColor: Color.Green}}>
+                                        <Text style={{ color: 'white'}}>{file[fileProps.tag]}</Text>
+                                    </Badge>
+                                )}
                             </Left>
                             <Right>
                                 <Icon name="ios-arrow-forward" />

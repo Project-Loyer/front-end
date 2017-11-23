@@ -5,7 +5,8 @@ let documents = [
         date: '2017-10-02 18:31:02',
         owner: 'Burlando',
         caseFile: '011093/2017',
-        local : true
+        local : true,
+        approved : "Aprobado"
     },
     {
         title: 'DEMANDA Isidoro Gomez',
@@ -13,7 +14,8 @@ let documents = [
         date: '2017-08-28 10:11:54',
         owner: 'Sandoval',
         caseFile: '010842/2017',
-        local : true
+        local : true,
+        approved : "Aprobado"
     },
     {
         title: 'CARTA DOCUMENTO 2',
@@ -21,7 +23,8 @@ let documents = [
         date: '2016-03-02 10:42:20',
         owner: 'Burlando',
         caseFile: '000012/2016',
-        local : false
+        local : false,
+        approved : "Aprobado"
     },
     {
         title: 'CARTA DOCUMENTO 1',
@@ -29,7 +32,8 @@ let documents = [
         date: '2016-02-28 10:22:22',
         owner: 'Burlando',
         caseFile: '000012/2016',
-        local : false
+        local : false,
+        approved : "Aprobado"
     }
 ];
 
