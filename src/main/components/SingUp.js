@@ -45,6 +45,11 @@ export class Singup extends Component<{}>{
                         placeholder="Fecha de nacimiento"
                         keyboardType='numeric'/>
                 </View>
+                <Button block
+                        style={styles.mainButton}
+                        onPress={() => { this.props.navigation.navigate('Login')}}>
+                    <Text style={styles.buttonText}>REGISTRARSE</Text>
+                </Button>
             </ScrollView>
         );
     }
@@ -85,6 +90,10 @@ const styles = StyleSheet.create({
     mainButton: {
         backgroundColor: color.secondary.color,
         paddingHorizontal: 16,
+        position: 'absolute',
+        bottom: '5%',
+        width: '100%',
+        right: '7%'
         //textAlign: 'center'
     },
     buttonText: {

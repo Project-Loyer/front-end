@@ -15,6 +15,7 @@ import Document from "./components/Document";
 import NewDocument from "./components/NewDocument";
 import {AsyncStorage} from "react-native";
 import Notifications from "./components/Notifications"
+import {NewCustomer} from "./components/NewCustomer";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -26,6 +27,7 @@ const LoyerApp = DrawerNavigator(
         CaseFiles : {screen : CaseFiles},
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
+        NewCustomer: {screen: NewCustomer},
         Notifications: { screen: Notifications }
     },
     {
