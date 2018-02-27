@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import {StyleSheet} from "react-native";
+import {Alert,StyleSheet} from "react-native";
 import {
-    Body, Button, Container, Content, Form, Header, Icon, Input, Item, Label, Left, Right, Switch, Text, Title, View
+    Button, Container, Content, Form, Header, Icon, Input, Item, Label, Left, Right, Switch, Text, Title, View
 } from "native-base";
 import Moment from 'moment';
 import FileMock from "../mock/Files";
 import {LoyerHeader} from "./LoyerHeader";
+import {color} from "../global/Color";
 
 export default class NewDocument extends Component {
     constructor(props) {
@@ -61,6 +62,20 @@ export default class NewDocument extends Component {
                             onPress={() => this.saveDocument()}>
                         <Text>Guardar</Text>
                     </Button>
+                    <View style={styles.linkUploadButtonsRow}>
+                        <Button iconLeft primary
+                                style={styles.uploadButton}
+                                onPress={() => { Alert.alert('Subir un documento desde el dispositivo')}}>
+                            <Icon name='md-cloud-upload' />
+                            <Text style={ [styles.textButtonSocial] }>Subir</Text>
+                        </Button>
+                        <Button iconLeft primary
+                                style={styles.scanButton}
+                                onPress={() => { Alert.alert('SOON: Open camera to scan files.')}}>
+                            <Icon style={ {marginRight: 5} } name='md-camera'/>
+                            <Text style={ [styles.textButtonSocial] }>Escanear</Text>
+                        </Button>
+                    </View>
                 </Content>
             </Container>
         );
@@ -86,5 +101,28 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         marginVertical: 24
+    },
+    linkUploadButtonsRow: {
+        flexDirection: 'row',
+        flex: 2,
+        justifyContent: 'space-around',
+        alignSelf: 'stretch',
+        paddingVertical: 12
+    },
+    uploadButton: {
+        //flex: 1,
+        width: "48%",
+        justifyContent: 'flex-start',
+        backgroundColor: color.primary.dark,
+        paddingHorizontal: 16,
+        marginRight: 5,
+    },
+    scanButton: {
+        //flex: 1,
+        justifyContent: 'flex-start',
+        backgroundColor: color.primary.dark,
+        paddingHorizontal: 16,
+        marginLeft: 5,
+        width: "48%"
     }
 });
