@@ -102,9 +102,9 @@ class SingupBasicInformation extends Component<{}> {
         this.state = {
             name :                  "Tomas Bert",
             nameError:              false,
-            password:               "asdf1234",
+            password:               "asdf12345",
             passwordError:          false,
-            confirm_password:       "asdf1234",
+            confirm_password:       "asdf12345",
             confirm_passwordError:  false,
             email:                  "tomasbert12@gmail.com",
             emailError:             false,
