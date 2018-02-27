@@ -16,6 +16,7 @@ const LoyerApp = DrawerNavigator(
         CaseFiles : {screen : CaseFiles},
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
+        NewCustomer: {screen: NewCustomer},
         Notifications: { screen: Notifications }
     },
     {
