@@ -4,7 +4,13 @@ import {AsyncStorage} from "react-native";
 import {Container} from "native-base";
 import FCM from 'react-native-fcm';
 import {SideBar} from "./sidebar/SideBar";
-import {Login, Home, CalendarScreen, Singup, Customers, Documents, CaseFile, CaseFiles, Document, NewDocument, Notifications} from "./components";
+import {
+    Login, Home, CalendarScreen,
+    Singup, Customers, Documents,
+    CaseFile, CaseFiles, Document,
+    NewDocument, Notifications,
+    NewCustomer
+} from "./components";
 
 const LoyerApp = DrawerNavigator(
     {
