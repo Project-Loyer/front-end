@@ -6,7 +6,7 @@ import NotificationsHandler from '../global/NotificationsHandler.js';
 import {LoyerHeader} from "./LoyerHeader";
 import {PushNotificator} from "../util/PushNotificator"
 
-export default class Notifications extends Component {
+export class Notifications extends Component {
     constructor(props) {
         super(props);
     }

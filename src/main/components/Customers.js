@@ -49,7 +49,7 @@ const customers = [
     }
 ];
 
-export default class Customers extends Component {
+export class Customers extends Component {
     constructor(props) {
         super(props);
         this.state = {

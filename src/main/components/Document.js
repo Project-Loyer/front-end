@@ -4,7 +4,7 @@ import {Body, Button, Container, Content, H1, Header, Icon, Left, Right, Text, T
 import {color} from "../global/Color"
 import {LoyerHeader} from "./LoyerHeader";
 
-export default class Document extends Component {
+export class Document extends Component {
     constructor(props) {
         super(props);
         this.state = {

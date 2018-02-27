@@ -6,7 +6,7 @@ import ActionButton from "react-native-action-button";
 import {LoyerHeader} from "./LoyerHeader";
 import {FileList} from "../util/File";
 
-export default class CaseFile extends Component {
+export class CaseFile extends Component {
     constructor(props) {
         super(props);
         this.state = {

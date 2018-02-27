@@ -7,7 +7,7 @@ import Moment from 'moment';
 import FileMock from "../mock/Files";
 import {LoyerHeader} from "./LoyerHeader";
 
-export default class NewDocument extends Component {
+export class NewDocument extends Component {
     constructor(props) {
         super(props);
         this.state = {
