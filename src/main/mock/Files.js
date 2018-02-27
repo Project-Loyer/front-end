@@ -1,3 +1,16 @@
+let users = [
+    {
+        user: 'fburlando',
+        pass: 'q1w2e3r4',
+        userType: 'lawyer'
+    },
+    {
+        user: 'dmaradona',
+        pass: 'eeeeeeeee',
+        userType: 'client'
+    }
+]
+
 let documents = [
     {
         title: 'APELACION Pierri',
@@ -58,6 +71,7 @@ class FilesMock {
     constructor() {
         this.documents = documents;
         this.caseFiles = caseFiles;
+        this.users = users;
     }
 
     addDocument(doc) {

@@ -12,19 +12,34 @@ import {
 import {Button, Icon, Container, Content, Spinner} from "native-base";
 import {color} from "../global/Color";
 import {AsyncStorage} from "react-native";
+import FilesMock from '../mock/Files';
 
 export class Login extends Component<{}> {
     constructor(props) {
         super(props);
         this.state = {
-          starting : false
+          starting : false,
+          user: 'fburlando',
+          pass: 'q1w2e3r4'
         };
     }
 
     saveData = function() {
-        AsyncStorage.setItem("Logged","true");
-        this.setState({starting:true});
+        let user = FilesMock.users.find(user => { return (user.user === this.state.user && user.pass === this.state.pass); })
+        if (user) {
+            AsyncStorage.setItem("Logged","true");
+            AsyncStorage.setItem("UserType", user.userType);
+            this.setState({starting:true});
+        }
     };
+
+    handleUserChange = (text) => {
+        this.setState({ user: text })
+    }
+
+    handlePassChange = (text) => {
+        this.setState({ pass: text })
+    }
 
     render() {
         if (this.state.starting) {
@@ -44,17 +59,20 @@ export class Login extends Component<{}> {
                 <View style={styles.loginForm}>
                     <TextInput
                         style={styles.textInput}
-                        placeholder="Usuario o e-mail" value={"fburlando"} />
+                        placeholder="Usuario o e-mail" 
+                        value={this.state.user}
+                        onChangeText={this.handleUserChange} />
                     <TextInput
                         style={styles.textInput}
                         placeholder="Contraseña"
                         password={true}
                         secureTextEntry={true}
-                        value={"q1w2e3r4"} />
+                        value={this.state.pass}
+                        onChangeText={this.handlePassChange} />
                     <View style={styles.loginButtonsContainer}>
                         <Button iconRight
                             style={styles.mainButton}
-                            onPress={() => this.saveData()/*this.props.navigation.navigate('Home')*/}>
+                            onPress={() => this.saveData()}>
                             <Text style={styles.buttonText}>INGRESAR</Text>
                             <Icon name="send" style={{marginLeft: 15, marginRight: 0}}/>
                         </Button>
@@ -72,21 +90,6 @@ export class Login extends Component<{}> {
                             onPress={() => { this.props.navigation.navigate('Singup')}}>
                         <Text style={styles.buttonText}>REGISTRARSE</Text>
                     </Button>
-                    <Text style={styles.linkAccount}>...o vincule su cuenta</Text>
-                    <View style={styles.linkAccountButtonsRow}>
-                        <Button iconLeft primary
-                            style={styles.facebookButton}
-                            onPress={() => { Alert.alert('Facebook!')}}>
-                            <Icon name='logo-facebook' />
-                            <Text style={ [styles.textButtonSocial] }>FACEBOOK</Text>
-                        </Button>
-                        <Button iconLeft primary
-                            style={styles.googleButton}
-                            onPress={() => { Alert.alert('Google!')}}>
-                            <Icon style={ {marginRight: 5} } name='logo-google'/>
-                            <Text style={ [styles.textButtonSocial] }>GOOGLE</Text>
-                        </Button>
-                    </View>
                 </View>
             </ScrollView>
         );
