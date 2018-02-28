@@ -5,7 +5,7 @@ import {AsyncStorage, Alert, View} from "react-native";
 import { ActionSheet, Container, Content, Text, List, ListItem, Left, Icon, Body, Thumbnail, H2 } from "native-base";
 import {color} from "../global/Color"
 
-const routes = ["Home","Customers","Calendar","Documents","CaseFiles","CloseSession", "Payment"];
+const routes = ["Home","Customers","Calendar","Documents","CaseFiles","CloseSession"];
 const routes_data = {
     "Home" : {
         "icon" : "home",
@@ -42,11 +42,6 @@ const routes_data = {
         "name" : "Cerrar Sesión",
         "goto" : "deleteData",
         "type" : "all"
-    },
-    "Payment" : {
-        "icon" : "md-card",
-        "name" : "PANTALLA DE PAGO",
-        "goto" : "Payment",
     }
 };
 export class SideBar extends React.Component {

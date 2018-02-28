@@ -18,6 +18,7 @@ export class Payment extends Component {
             paymentStatus: PaymentStatus.UNDEFINED
         };
 
+        // TODO: Should receive the next component to show and its required navigation props after payment is successful.
         /*this.state = {
             nextComponent: props.navigation.state.params.nextComponent,
             nextComponentData: props.navigation.state.params.nextComponentData
