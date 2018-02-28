@@ -13,7 +13,6 @@ import {
     NewCustomer, Payment
 } from "./components";
 import { ClientHome } from './components/ClientHome';
-
 import UsersMock from "./mock/Users";
 
 
