@@ -59,7 +59,7 @@ export class Pricing extends Component {
                         </CardItem>
                         <CardItem>
                             <Button block style={styles.primaryButton}
-                                    onPress={() => Alert.alert('SOON: Selecionado el plan free.')}>
+                                    onPress={() => this.props.navigation.navigate('Home')}>
                                 <Text>Seleccionar Plan</Text>
                             </Button>
                         </CardItem>
@@ -109,7 +109,7 @@ export class Pricing extends Component {
                         </CardItem>
                         <CardItem>
                             <Button block style={styles.primaryButton}
-                                    onPress={() => Alert.alert('SOON: Selecionado el plan free.')}>
+                                    onPress={() => this.props.navigation.navigate('Payment')}>
                                 <Text>Seleccionar Plan</Text>
                             </Button>
                         </CardItem>
@@ -159,7 +159,7 @@ export class Pricing extends Component {
                         </CardItem>
                         <CardItem>
                             <Button block style={styles.primaryButton}
-                                    onPress={() => Alert.alert('SOON: Selecionado el plan free.')}>
+                                    onPress={() => this.props.navigation.navigate('Payment')}>
                                 <Text>Seleccionar Plan</Text>
                             </Button>
                         </CardItem>
