@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import PhoneInput from 'react-native-phone-input';
-import { Container, Label, Header, Content, Button, Icon, Input, Item, Form, List, ListItem, CheckBox, Body} from "native-base";
+import { Container, Label, Header, Content, Button, Icon, Input, Item, Form, List, ListItem, CheckBox, Spinner} from "native-base";
 import Collapsible from 'react-native-collapsible';
 import {
     StyleSheet,
@@ -411,7 +411,8 @@ export class Singup extends Component<{}>{
             basicInformation : {},
             passBasicInformation : false,
             advanceLawyerInformation : {},
-            passAdvanceLawyerInformation : false
+            passAdvanceLawyerInformation : false,
+            openingSession : false
         };
     }
 
@@ -436,9 +437,20 @@ export class Singup extends Component<{}>{
     finishAndLogin() {
         let userInfo = {
             ...this.state.basicInformation,
+            user_type : this.state.userType,
             lawyer_info : this.state.advanceLawyerInformation
         };
-        UsersMock.add(userInfo);
+        let user = UsersMock.add(userInfo);
+        let theThis = this;
+        setTimeout(() => {
+            if (UsersMock.createSession(user.email, user.password)) {
+                theThis.setState({openingSession:true});
+                let {onLogin} = theThis.props.screenProps;
+                setTimeout(function () {
+                    onLogin(user.user_type);
+                },1000);
+            }
+        },1000);
     }
 
     actualForm() {
@@ -455,6 +467,17 @@ export class Singup extends Component<{}>{
     }
 
     render() {
+        if (this.state.openingSession) {
+            return (
+                <Container>
+                    <Content marginTop="20%">
+                        <Text style={{alignSelf:"center",fontSize:40,marginBottom:"30%"}}>Bienvenidos a <Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text></Text>
+                        <Spinner color={color.primary.dark} />
+                        <Text style={{alignSelf:"center"}}>Iniciando sesión...</Text>
+                    </Content>
+                </Container>
+            );
+        }
         return (
             <KeyboardAwareScrollView
                 extraHeight={20}

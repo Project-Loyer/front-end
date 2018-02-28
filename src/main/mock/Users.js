@@ -89,7 +89,10 @@ class UsersMock {
     }
 
     add(userInformation) {
-        this.users[userInformation.email] = new User(userInformation);
+        let newUser = new User(userInformation);
+        this.users[userInformation.email] = newUser;
+        return newUser
+
     }
 
     exist(email) {
@@ -98,6 +101,16 @@ class UsersMock {
 
     get(email) {
         return this.exist(email) ? this.users[email] : null;
+    }
+
+    getLawyers() {
+        let lawyers = [];
+        for (let email in this.users) {
+            if (this.users[email].user_type === TYPE_LAWYER) {
+                lawyers.push(this.users[email]);
+            }
+        }
+        return lawyers;
     }
 
     createSession(email, password) {
