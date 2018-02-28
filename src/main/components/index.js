@@ -12,3 +12,4 @@ export * from './NewDocument';
 export * from './Notifications';
 export * from './SingUp';
 export * from './NewCustomer';
+export * from './Payment'

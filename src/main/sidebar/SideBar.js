@@ -44,8 +44,7 @@ const routes_data = {
         "name" : "Cerrar Sesión",
         "goto" : "deleteData",
         "type" : "all"
-    },
-
+    }
 };
 export class SideBar extends React.Component {
     constructor(props) {

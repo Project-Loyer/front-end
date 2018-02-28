@@ -9,7 +9,8 @@ import {
     Login, Home, CalendarScreen,
     Singup, Customers, Customer, Documents,
     CaseFile, CaseFiles, Document,
-    NewDocument, Notifications, NewCustomer
+    NewDocument, Notifications,
+    NewCustomer, Payment
 } from "./components";
 import { ClientHome } from './components/ClientHome';
 
@@ -29,7 +30,8 @@ const LoyerApp = DrawerNavigator(
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
         NewCustomer: {screen: NewCustomer},
-        Notifications: { screen: Notifications }
+        Notifications: { screen: Notifications },
+        Payment: { screen: Payment }
     },
     {
         initialRouteName : "Home",
