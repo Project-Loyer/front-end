@@ -4,6 +4,7 @@ import {AsyncStorage} from "react-native";
 import {Container} from "native-base";
 import FCM from 'react-native-fcm';
 import {SideBar} from "./sidebar/SideBar";
+import {ClientSideBar} from "./sidebar/ClientSideBar";
 import {
     Login, Home, CalendarScreen,
     Singup, Customers, Customer, Documents,
@@ -11,7 +12,7 @@ import {
     NewDocument, Notifications,
     NewCustomer, Payment
 } from "./components";
-
+import { ClientHome } from './components/ClientHome';
 const LoyerApp = DrawerNavigator(
     {
         Home: { screen: Home },
@@ -31,6 +32,16 @@ const LoyerApp = DrawerNavigator(
         initialRouteName : "Home",
         contentComponent: props => <SideBar {...props} />,
 
+    }
+);
+
+const ClientApp = DrawerNavigator(
+    {
+        ClientHome: { screen: ClientHome }
+    },
+    {
+        initialRouteName: "ClientHome",
+        contentComponent: props => <SideBar {...props} />,
     }
 );
 
@@ -62,6 +73,11 @@ export default class App extends Component<{}> {
                 logged : (value === "true"),
                 isLoading: false
             });
+        });
+        AsyncStorage.getItem("UserType").then((value) => {
+            this.setState({
+                userType: value
+            })
         });
     },100);
 
@@ -108,6 +124,12 @@ export default class App extends Component<{}> {
         if (this.state.isLoading) {
             return <Container/>;
         }
-        return this.state.logged ? <LoyerApp/> : <LoyerAppLogin />;
+        if (this.state.logged) {
+            if (this.state.userType === "client") {
+                return <ClientApp />;
+            }
+            return <LoyerApp/>;
+        }
+        return <LoyerAppLogin />;
     }
 }
