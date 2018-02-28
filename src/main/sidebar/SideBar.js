@@ -37,7 +37,11 @@ const routes_data = {
         "name" : "Cerrar Sesión",
         "goto" : "deleteData",
     },
-
+    "CloseSession" : {
+        "icon" : "md-card",
+        "name" : "PANTALLA DE PAGO",
+        "goto" : "Pago",
+    }
 };
 export class SideBar extends React.Component {
     deleteData = function () {
