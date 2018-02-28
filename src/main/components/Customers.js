@@ -72,7 +72,8 @@ export class Customers extends Component {
                                         </List>
                                     </CardItem>
                                     <CardItem>
-                                        <Button block style={styles.primaryButton}>
+                                        <Button block style={styles.primaryButton}
+                                                onPress={() => this.props.navigation.navigate('Customer', {customer: customer})}>
                                             <Text>Ver cliente</Text>
                                         </Button>
                                     </CardItem>

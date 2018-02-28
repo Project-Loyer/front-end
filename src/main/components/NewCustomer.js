@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Icon} from "native-base";
+import { Button, List, ListItem, Text, Icon, Left, Body, Right} from "native-base";
 import {
     ScrollView,
     StyleSheet,
-    Text,
     TextInput,
     View
 } from 'react-native';
@@ -43,33 +42,77 @@ export class NewCustomer extends Component<{}>{
                 </Button>
                 <Text style={{fontSize:30}}>Nuevo cliente</Text>
                 <View style={styles.addCustomerForm}>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Nombre"
-                        onChangeText={(content) => this.setState({customer: {...this.state.customer, "name" : content } })} />
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Apellido"
-                        onChangeText={(content) => this.setState({customer: {...this.state.customer, "lastName" : content } })}/>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Fecha de nacimiento"
-                        keyboardType='numeric'
-                        onChangeText={(content) => this.setState({customer: {...this.state.customer, "birthDay" : content } })}/>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Email"
-                        keyboardType='email-address'
-                        onChangeText={(content) => this.setState({customer: {...this.state.customer, "email" : content } })}/>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Telefono"
-                        keyboardType='numeric'
-                        onChangeText={(content) => this.setState({customer: {...this.state.customer, "phone" : content } })}/>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Localidad"
-                        onChangeText={(content) => this.setState({customer: {...this.state.customer, "address" : content } })}/>
+                    <List>
+                        <ListItem icon>
+                            <Left>
+                                <Icon name="md-create" />
+                            </Left>
+                            <Body>
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Nombre"
+                                    onChangeText={(content) => this.setState({customer: {...this.state.customer, "name" : content } })} />
+                            </Body>
+                        </ListItem>
+                        <ListItem icon>
+                            <Left>
+                                <Icon name="md-create" />
+                            </Left>
+                            <Body>
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="Apellido"
+                                onChangeText={(content) => this.setState({customer: {...this.state.customer, "lastName" : content } })}/>
+                            </Body>
+                        </ListItem>
+                        <ListItem icon>
+                            <Left>
+                                <Icon name="md-calendar" />
+                            </Left>
+                            <Body>
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Fecha de nacimiento"
+                                    keyboardType='numeric'
+                                    onChangeText={(content) => this.setState({customer: {...this.state.customer, "birthDay" : content } })}/>
+                            </Body>
+                        </ListItem>
+                        <ListItem icon>
+                            <Left>
+                                <Icon name="md-mail" />
+                            </Left>
+                            <Body>
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Email"
+                                    keyboardType='email-address'
+                                    onChangeText={(content) => this.setState({customer: {...this.state.customer, "email" : content } })}/>
+                            </Body>
+                        </ListItem>
+                        <ListItem icon>
+                            <Left>
+                                <Icon name="md-call" />
+                            </Left>
+                            <Body>
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Telefono"
+                                    keyboardType='numeric'
+                                    onChangeText={(content) => this.setState({customer: {...this.state.customer, "phone" : content } })}/>
+                            </Body>
+                        </ListItem>
+                        <ListItem icon>
+                            <Left>
+                                <Icon name="md-pin" />
+                            </Left>
+                            <Body>
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Localidad"
+                                    onChangeText={(content) => this.setState({customer: {...this.state.customer, "address" : content } })}/>
+                            </Body>
+                        </ListItem>
+                    </List>
                 </View>
                 <Button block
                         style={styles.addCustomerButton}
@@ -94,7 +137,8 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch'
     },
     textInput: {
-        height: 50
+        height: 50,
+        fontSize: 20
     },
     addCustomerButton: {
         backgroundColor: color.primary.dark,

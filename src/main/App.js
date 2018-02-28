@@ -7,7 +7,7 @@ import {SideBar} from "./sidebar/SideBar";
 import {ClientSideBar} from "./sidebar/ClientSideBar";
 import {
     Login, Home, CalendarScreen,
-    Singup, Customers, Documents,
+    Singup, Customers, Customer, Documents,
     CaseFile, CaseFiles, Document,
     NewDocument, Notifications, NewCustomer
 } from "./components";
@@ -17,6 +17,7 @@ const LoyerApp = DrawerNavigator(
         Home: { screen: Home },
         CalendarScreen : {screen: CalendarScreen},
         Customers : {screen: Customers},
+        Customer : {screen: Customer},
         Documents: {screen: Documents},
         CaseFile: {screen: CaseFile},
         CaseFiles : {screen : CaseFiles},
