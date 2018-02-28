@@ -1,59 +1,17 @@
 import React, { Component } from 'react';
-
 import {
     StyleSheet,
 } from 'react-native';
 import { Container, Header, Title, Content, List, ListItem, ListView, Text,Button , Icon, Left, Body, Right, Card, CardItem,Thumbnail,Fab } from 'native-base';
 import {color} from "../global/Color"
 import {LoyerHeader} from "./LoyerHeader";
+import CustomersMocks from "../mock/Clients";
 
-const customers = [
-    {
-        name: "Carlos",
-        lastName: "Fachinetti",
-        avatar : require("../images/cfachinetti.jpg"),
-        cases: 2,
-        address: "Rawson, Buenos Aires, Argentina",
-        documents: 30,
-        dateNextEvent: "13 de diciembre"
-    },
-    {
-        name: "Juan Carlos",
-        lastName: "Cané",
-        avatar : require("../images/juancane.jpg"),
-        pendingActivities: 1,
-        cases: 1,
-        address: "Chivilcoy, Buenos Aires, Argentina",
-        documents: 5,
-        dateNextEvent: "25 de noviembre"
-    },
-    {
-        name: "Esteban",
-        lastName: "Cario",
-        avatar : require("../images/cario.jpg"),
-        pendingActivities: 1,
-        cases: 8,
-        address: "Carmen de Areco, Buenos Aires, Argentina",
-        documents: 250,
-        dateNextEvent: "6 de febrero"
-    },
-    {
-        name: "Julio",
-        lastName: "Barbosco",
-        avatar : require("../images/avatarDefault.png"),
-        pendingActivities: 0,
-        cases: 1,
-        address: "Junin, Buenos aires, Argentina",
-        documents: 3,
-        dateNextEvent: "5 de enero de 2018"
-    }
-];
-
-export default class Customers extends Component {
+export class Customers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: {}
+            customers : CustomersMocks.customers
         };
     }
 
@@ -61,12 +19,9 @@ export default class Customers extends Component {
         return (
             <Container>
                 <LoyerHeader {...this.props} title={"Clientes"}/>
-                <Button icon style={{width:58,height:58,borderRadius:30,position:"absolute",bottom: 10,right: 10,backgroundColor:color.primary.dark}}>
-                    <Icon name='md-person-add' />
-                </Button>
                 <Content>
                     <List
-                        dataArray={customers}
+                        dataArray={this.state.customers}
                         renderRow={ customer => {
                             return (
                                 <Card>
@@ -111,7 +66,7 @@ export default class Customers extends Component {
                                                     <Icon name="md-calendar" />
                                                 </Left>
                                                 <Body>
-                                                <Text style={{color:color.secondary.light}}>Próximo evento {customer.dateNextEvent}</Text>
+                                                <Text style={{color:color.secondary.light}}>{customer.dateNextEvent ? ("Próximo evento " + customer.dateNextEvent) : "No hay eventos próximos"}</Text>
                                                 </Body>
                                             </ListItem>
                                         </List>
@@ -126,6 +81,11 @@ export default class Customers extends Component {
                         }}
                     />
                 </Content>
+                <Button icon
+                        style={{width:58,height:58,borderRadius:30,position:"absolute",bottom: 10,right: 10,backgroundColor:color.primary.dark}}
+                        onPress={() => this.props.navigation.navigate('NewCustomer')}>
+                    <Icon name='md-person-add' />
+                </Button>
             </Container>
         );
     }

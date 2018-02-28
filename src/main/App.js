@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import {DrawerNavigator, StackNavigator} from "react-navigation";
+import {AsyncStorage} from "react-native";
 import {Container} from "native-base";
 import FCM from 'react-native-fcm';
 import {SideBar} from "./sidebar/SideBar";
-import {ClientSideBar} from './sidebar/ClientSideBar';
-import {Login} from "./components/Login";
-import {Home} from "./components/Home";
-import {ClientHome} from "./components/ClientHome";
-import CalendarScreen from "./components/CalendarScreen";
-import {Singup} from "./components/SingUp";
-import Customers from "./components/Customers";
-import Documents from "./components/Documents";
-import CaseFile from "./components/CaseFile";
-import CaseFiles from "./components/CaseFiles";
-import Document from "./components/Document";
-import NewDocument from "./components/NewDocument";
-import {AsyncStorage} from "react-native";
-import Notifications from "./components/Notifications"
+import {
+    Login, Home, CalendarScreen,
+    Singup, Customers, Documents,
+    CaseFile, CaseFiles, Document,
+    NewDocument, Notifications,
+    NewCustomer, ClientHome, ClientSideBar
+} from "./components";
 
 const LoyerApp = DrawerNavigator(
     {
@@ -28,6 +22,7 @@ const LoyerApp = DrawerNavigator(
         CaseFiles : {screen : CaseFiles},
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
+        NewCustomer: {screen: NewCustomer},
         Notifications: { screen: Notifications }
     },
     {

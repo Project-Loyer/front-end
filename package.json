@@ -19,7 +19,9 @@
 		"moment": "^2.19.2",
 		"react-native-fcm": "^10.0.3",
 		"react-native-action-button": "^2.8.2",
-		"react-native-material-color": "^1.0.14"
+		"react-native-material-color": "^1.0.14",
+		"react-native-keyboard-aware-scroll-view": "^0.4.4",
+		"react-native-phone-input": "^0.1.10"
 	},
 	"devDependencies": {
 		"babel-jest": "21.2.0",

@@ -4,7 +4,7 @@ import {LoyerHeader} from "./LoyerHeader";
 import FilesMock from "../mock/Files";
 import {FileList} from "../util/File";
 
-export default class CaseFiles extends Component {
+export class CaseFiles extends Component {
     constructor(props) {
         super(props);
 
