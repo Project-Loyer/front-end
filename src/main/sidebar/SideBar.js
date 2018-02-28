@@ -5,37 +5,39 @@ import {AsyncStorage, Alert, View} from "react-native";
 import { ActionSheet, Container, Content, Text, List, ListItem, Left, Icon, Body, Thumbnail, H2 } from "native-base";
 import {color} from "../global/Color"
 
+import UsersMock from "../mock/Users";
+
 const routes = ["Home","Customers","Calendar","Documents","CaseFiles","CloseSession"];
 const routes_data = {
     "Home" : {
         "icon" : "home",
         "name" : "Inicio",
         "goto" : "Home",
-        "type" : "lawyer"
+        "type" : UsersMock.TYPE_LAWYER
     },
     "Customers" :{
         "icon" : "md-people",
         "name" : "Clientes",
         "goto" : "Customers",
-        "type" : "lawyer"
+        "type" : UsersMock.TYPE_LAWYER
     },
     "Calendar" : {
         "icon" : "calendar",
         "name" : "Calendario",
         "goto" : "CalendarScreen",
-        "type" : "lawyer"
+        "type" : UsersMock.TYPE_LAWYER
     },
     "Documents": {
         "icon" : "folder",
         "name" : "Documentos",
         "goto" : "Documents",
-        "type" : "lawyer"
+        "type" : UsersMock.TYPE_LAWYER
     },
     "CaseFiles" : {
         "icon" : "md-paper",
         "name" : "Expedientes",
         "goto" : "CaseFiles",
-        "type" : "lawyer"
+        "type" : UsersMock.TYPE_LAWYER
     },
     "CloseSession" : {
         "icon" : "md-close-circle",
@@ -49,20 +51,33 @@ export class SideBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            waiting: true,
-            userType: ''
+            waiting: false,
+            userType: UsersMock.loggedUser.user_type
         }
+        /*
         AsyncStorage.getItem("UserType").then((userType) => { 
             this.setState({
                 waiting: false,
                 userType: userType
             })
-        })  
+        })
+        */
     }
 
     deleteData = function () {
-        AsyncStorage.setItem("Logged","false");
+        UsersMock.finishSession();
     };
+
+    getName() {
+        return UsersMock.loggedUser.name.split(" ")[0];
+    }
+
+    Thumbnail() {
+        if (UsersMock.loggedUser.isLawyer() && UsersMock.loggedUser.lawyer_info.picture) {
+            return <Thumbnail large source={{uri: UsersMock.loggedUser.lawyer_info.picture}} />;
+        }
+        return null;
+    }
 
     render() {
         if (this.state.waiting) {
@@ -74,8 +89,8 @@ export class SideBar extends React.Component {
                         <Content style={{height:160, backgroundColor: color.secondary.color}}>
                             <Body style={{height:160,top:25,paddingLeft:10, alignSelf:'flex-start'}}>
                                 <Left>
-                                    <Thumbnail large source={{uri: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg'}} />
-                                    <H2 style={{marginTop: 20,bottom:0,color:color.secondary.text}}>Hola, Burlando</H2>
+                                    { this.Thumbnail() }
+                                    <H2 style={{marginTop: 20,bottom:0,color:color.secondary.text}}>Hola, {this.getName()}</H2>
                                 </Left>
                             </Body>
                         </Content>

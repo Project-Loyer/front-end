@@ -11,35 +11,41 @@ import {
 } from 'react-native';
 import {Button, Icon, Container, Content, Spinner} from "native-base";
 import {color} from "../global/Color";
+import UsersMock from "../mock/Users";
 import {AsyncStorage} from "react-native";
-import FilesMock from '../mock/Files';
+
 
 export class Login extends Component<{}> {
     constructor(props) {
         super(props);
         this.state = {
           starting : false,
-          user: 'fburlando',
+          user: "fburlando@estudio.com",
           pass: 'q1w2e3r4'
         };
     }
 
     saveData = function() {
-        let user = FilesMock.users.find(user => { return (user.user === this.state.user && user.pass === this.state.pass); })
+        let user = UsersMock.createSession(this.state.user, this.state.pass);
         if (user) {
-            AsyncStorage.setItem("Logged","true");
-            AsyncStorage.setItem("UserType", user.userType);
+            //AsyncStorage.setItem("Logged","true");
+            //AsyncStorage.setItem("UserType", user.user_type);
+
             this.setState({starting:true});
+            let {onLogin} = this.props.screenProps;
+            setTimeout(function () {
+                onLogin(user.user_type);
+            },1000);
         }
     };
 
     handleUserChange = (text) => {
         this.setState({ user: text })
-    }
+    };
 
     handlePassChange = (text) => {
         this.setState({ pass: text })
-    }
+    };
 
     render() {
         if (this.state.starting) {
@@ -59,7 +65,7 @@ export class Login extends Component<{}> {
                 <View style={styles.loginForm}>
                     <TextInput
                         style={styles.textInput}
-                        placeholder="Usuario o e-mail" 
+                        placeholder="E-mail"
                         value={this.state.user}
                         onChangeText={this.handleUserChange} />
                     <TextInput

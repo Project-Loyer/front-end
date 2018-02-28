@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import PhoneInput from 'react-native-phone-input';
-import { Container, Label, Header, Content, Button, Icon, Toast, Input, Item, Form} from "native-base";
+import { Container, Label, Header, Content, Button, Icon, Input, Item, Form, List, ListItem, CheckBox, Body} from "native-base";
+import Collapsible from 'react-native-collapsible';
 import {
     StyleSheet,
     Text,
@@ -10,10 +11,12 @@ import {
 import {color} from "../global/Color";
 import validateEmail from "../util/utils";
 
+import UsersMock from "../mock/Users";
+
 const SingUp_UserType = {
     UNDEFINED : null,
-    LOYER : 1,
-    CLIENT : 2,
+    LAWYER : UsersMock.TYPE_LAWYER,
+    CLIENT : UsersMock.TYPE_CLIENT,
 };
 
 
@@ -78,7 +81,7 @@ class SingupSelectUserType extends Component<{}> {
         let {onSelectUserType} = this.props;
         return (
             <View style={styles.singupForm}>
-                    <Button style={{marginVertical:20, backgroundColor: color.secondary.light}} full large iconLeft onPress={() => onSelectUserType(SingUp_UserType.LOYER)}>
+                    <Button style={{marginVertical:20, backgroundColor: color.secondary.light}} full large iconLeft onPress={() => onSelectUserType(SingUp_UserType.LAWYER)}>
                         <Icon style={{color: color.secondary.text}} name='md-person'/>
                         <Text style={{fontSize: 20, color: color.secondary.text}}>SOY ABOGADO</Text>
                     </Button>
@@ -250,13 +253,165 @@ class SingupBasicInformation extends Component<{}> {
     }
 }
 
+class SignUpAdvanceLawyerInformation extends Component<{}> {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selectedSpecialties : [],
+            collapsed :     true,
+            showSummary :   false,
+
+            location:       "",
+            university:     "",
+            experience:     "",
+            fee:            "",
+            description:    ""
+        }
+    }
+
+    selectSpecialty(e) {
+        let specialties = this.state.selectedSpecialties.slice();
+        let index = specialties.indexOf(e);
+        if (index !== -1) {
+            specialties.splice(index,1);
+        } else {
+            specialties.push(e);
+        }
+        this.setState({
+            selectedSpecialties : specialties
+        })
+    }
+
+    openSpecialties() {
+        let newCollapsedState = !this.state.collapsed;
+        this.setState({
+            collapsed : newCollapsedState
+        });
+    }
+
+    collapseSpecialities() {
+        if (!this.state.collapsed) {
+            this.openSpecialties();
+        }
+    }
+
+    isSelected(e) {
+        return this.state.selectedSpecialties.indexOf(e) !== -1;
+    }
+
+    specialtySummary() {
+        let specialities = this.state.selectedSpecialties;
+        if (specialities.length > 0) {
+            return "Especialidad (" + specialities.length + ")";
+        }
+        return "Especialidad";
+    }
+
+    doContinue() {
+        if (!this.state.showSummary) {
+            this.setState({showSummary:true});
+        } else {
+            this.props.onFinish({
+                specialties :   this.state.selectedSpecialties,
+                location :      this.state.location,
+                university :    this.state.university,
+                fee :           this.state.fee,
+                experience :    this.state.experience,
+                description :   this.state.description
+            })
+        }
+    }
+
+    renderShortInfoForm() {
+        let ListItems = UsersMock.LAWYER_SPECIALTIES.map((e) => (
+            <ListItem key={e} >
+                <CheckBox color={color.secondary.light} checked={this.isSelected(e)} onPress={() => this.selectSpecialty(e)} />
+                <Text>  {e}</Text>
+            </ListItem>
+        ));
+        return (
+            <View style={styles.singupForm}>
+                <Button full light iconRight onPress={() => this.openSpecialties()}>
+                    <Text style={{color:color.secondary.dark,fontSize:20}}>{this.specialtySummary()}</Text>
+                </Button>
+                <Collapsible collapsed={this.state.collapsed}>
+                    <List style={{alignSelf: 'stretch',paddingRight:20}}>
+                        {ListItems}
+                    </List>
+                </Collapsible>
+                <Item style={{marginTop:20}}>
+                    <Input
+                        onChangeText={(y) => this.setState({experience:y})}
+                        onFocus={()=>this.collapseSpecialities()}
+                        keyboardType="numeric"
+                        placeholder='Años de experiencia'
+                    />
+                </Item>
+                <Item style={{marginTop:20}}>
+                    <Input
+                        onChangeText={(f) => this.setState({fee:f})}
+                        onFocus={()=>this.collapseSpecialities()}
+                        keyboardType="numeric"
+                        placeholder='Honorarios (precio por consulta)'
+                    />
+                </Item>
+                <Item style={{marginTop:20}}>
+                    <Input
+                        onChangeText={(u) => this.setState({university:u})}
+                        onFocus={()=>this.collapseSpecialities()}
+                        placeholder='Universidad'
+                    />
+                </Item>
+                <Item style={{marginTop:20, marginBottom: 30}}>
+                    <Input
+                        onChangeText={(l) => this.setState({location:l})}
+                        onFocus={()=>this.collapseSpecialities()}
+                        placeholder='Ubicación'
+                    />
+                </Item>
+
+                <Button style={{backgroundColor:color.secondary.dark}} full onPress={() => this.doContinue()}>
+                    <Text style={{color:color.secondary.text,fontSize:20}}>CONTINUAR</Text>
+                </Button>
+            </View>
+        );
+    }
+
+    renderSummaryForm() {
+        return (
+            <View style={styles.singupForm}>
+                <Text style={{fontSize:25}}>Escribe un resumen sobre ti.</Text>
+                <Item regular style={{height:300, alignSelf: 'flex-start'}}>
+                    <Input
+                        onChangeText={(t) => this.setState({description:t})}
+                        style={{alignSelf: 'flex-start'}}
+                        multiline={true}
+                        editable={true}
+                        placeholder='Resumen' />
+                </Item>
+                <Text style={{fontSize:10}}>El campo es opcional.</Text>
+                <Button style={{backgroundColor:color.secondary.dark, marginTop: 40}} full onPress={() => this.doContinue()}>
+                    <Text style={{color:color.secondary.text,fontSize:20}}>FINALIZAR</Text>
+                </Button>
+            </View>
+        );
+    }
+
+    render() {
+        return (this.state.showSummary) ? this.renderSummaryForm() : this.renderShortInfoForm();
+    }
+}
+
 export class Singup extends Component<{}>{
     constructor(props) {
         super(props);
         this.state = {
             userType : SingUp_UserType.UNDEFINED,
             basicInformation : {},
-            passBasicInformation : false
+            passBasicInformation : false,
+            advanceLawyerInformation : {},
+            passAdvanceLawyerInformation : false
         };
     }
 
@@ -267,23 +422,36 @@ export class Singup extends Component<{}>{
     goToValidation = (basicInformation) => {
         this.setState({
             passBasicInformation : true,
-            basicInformation : basicInformation
+            basicInformation : basicInformation,
         });
     };
 
+    addLawyerInfo(advanceInformation) {
+        this.setState({
+            advanceLawyerInformation : advanceInformation,
+            passAdvanceLawyerInformation : true
+        });
+    }
+
     finishAndLogin() {
-        //Add user in mock
-        //Login
+        let userInfo = {
+            ...this.state.basicInformation,
+            lawyer_info : this.state.advanceLawyerInformation
+        };
+        UsersMock.add(userInfo);
     }
 
     actualForm() {
         if (this.state.userType !== SingUp_UserType.UNDEFINED) {
            if (!this.state.passBasicInformation) {
-               return <SingupBasicInformation onFinish={this.goToValidation}/>
+               return <SingupBasicInformation onFinish={(bi) => this.goToValidation(bi)}/>
            }
-           return <SignUpWaitConfirmationCode onSuccess={this.finishAndLogin}/>
+           if (this.state.userType === SingUp_UserType.LAWYER && !this.state.passAdvanceLawyerInformation) {
+               return <SignUpAdvanceLawyerInformation onFinish={(li) => this.addLawyerInfo(li)}/>
+           }
+           return <SignUpWaitConfirmationCode onSuccess={() => this.finishAndLogin()}/>
         }
-        return <SingupSelectUserType onSelectUserType={this.setUserType}/>
+        return <SingupSelectUserType onSelectUserType={(t) => this.setUserType(t)}/>
     }
 
     render() {
@@ -301,6 +469,7 @@ export class Singup extends Component<{}>{
                     onPress={() => this.props.navigation.navigate('Login')}>
                     <Icon name="ios-arrow-back" style={{color :color.secondary.color}} />
                 </Button>
+
                 <Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text><Text style={{fontSize:40}}>Registración</Text>
 
                 { this.actualForm() }
