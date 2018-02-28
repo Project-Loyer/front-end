@@ -2,6 +2,29 @@ let users = [
     {
         user: 'fburlando',
         pass: 'q1w2e3r4',
+        name: 'Fernando',
+        lastName: 'Burlando',
+        age: 48,
+        university: 'UBA',
+        specialties: ['penal', 'civil', 'comercial'],
+        location: 'La Plata',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. ',
+        picture: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg',
+        fee: 10000,
+        userType: 'lawyer'
+    },
+    {
+        user: 'jmiglino',
+        pass: '111111',
+        name: 'Javier',
+        lastName: 'Miglino',
+        age: 56,
+        university: 'UNLP',
+        specialties: ['civil', 'comercial', 'empresarial'],
+        location: 'Buenos Aires',
+        description: 'Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.',
+        picture: 'http://am1300lasalada.com.ar/wp-content/uploads/2016/02/0000219868.jpg',
+        fee: 7400,
         userType: 'lawyer'
     },
     {

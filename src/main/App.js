@@ -4,14 +4,14 @@ import {AsyncStorage} from "react-native";
 import {Container} from "native-base";
 import FCM from 'react-native-fcm';
 import {SideBar} from "./sidebar/SideBar";
+import {ClientSideBar} from "./sidebar/ClientSideBar";
 import {
     Login, Home, CalendarScreen,
     Singup, Customers, Documents,
     CaseFile, CaseFiles, Document,
-    NewDocument, Notifications,
-    NewCustomer, ClientHome, ClientSideBar
+    NewDocument, Notifications, NewCustomer
 } from "./components";
-
+import { ClientHome } from './components/ClientHome';
 const LoyerApp = DrawerNavigator(
     {
         Home: { screen: Home },
@@ -38,7 +38,7 @@ const ClientApp = DrawerNavigator(
     },
     {
         initialRouteName: "ClientHome",
-        contentComponent: props => <ClientSideBar {...props} />
+        contentComponent: props => <SideBar {...props} />,
     }
 );
 
