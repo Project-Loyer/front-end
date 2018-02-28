@@ -9,7 +9,7 @@ import {
     Singup, Customers, Customer, Documents,
     CaseFile, CaseFiles, Document,
     NewDocument, Notifications,
-    NewCustomer
+    NewCustomer, Pricing
 } from "./components";
 
 const LoyerApp = DrawerNavigator(
@@ -24,7 +24,8 @@ const LoyerApp = DrawerNavigator(
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
         NewCustomer: {screen: NewCustomer},
-        Notifications: { screen: Notifications }
+        Notifications: { screen: Notifications },
+        Pricing: { screen: Pricing }
     },
     {
         initialRouteName : "Home",
@@ -37,6 +38,7 @@ const LoyerAppLogin = StackNavigator(
     {
         Login: { screen: Login },
         Singup: { screen: Singup },
+        Pricing: { screen: Pricing }
     },{
         initialRouteName : "Login",
         headerMode: "None"
