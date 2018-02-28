@@ -40,7 +40,7 @@ let customers = [
     {
         name: "Julio",
         lastName: "Barbosco",
-        avatar : require("../images/avatarDefault.png"),
+        avatar : require("../images/jbarbosco.jpg"),
         pendingActivities: 0,
         cases: 1,
         address: "Junin, Buenos aires, Argentina",
