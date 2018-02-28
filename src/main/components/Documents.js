@@ -5,7 +5,7 @@ import {FileList} from "../util/File";
 import FilesMock from "../mock/Files";
 import renderIf from "../util/renderIf";
 
-export default class Documents extends Component {
+export class Documents extends Component {
     constructor(props) {
         super(props);
         this.state = {

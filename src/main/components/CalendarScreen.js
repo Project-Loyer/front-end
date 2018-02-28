@@ -25,7 +25,7 @@ LocaleConfig.locales['es'] = {
 
 LocaleConfig.defaultLocale = 'es';
 
-export default class CalendarScreen extends Component {
+export class CalendarScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {

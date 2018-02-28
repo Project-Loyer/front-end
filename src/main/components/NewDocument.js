@@ -8,7 +8,7 @@ import FileMock from "../mock/Files";
 import {LoyerHeader} from "./LoyerHeader";
 import {color} from "../global/Color";
 
-export default class NewDocument extends Component {
+export class NewDocument extends Component {
     constructor(props) {
         super(props);
         this.state = {
