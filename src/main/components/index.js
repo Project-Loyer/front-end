@@ -2,6 +2,7 @@ export * from './CaseFile';
 export * from './CaseFiles';
 export * from './CalendarScreen';
 export * from './Customers';
+export * from './Customer';
 export * from './Document';
 export * from './Documents';
 export * from './Home';
