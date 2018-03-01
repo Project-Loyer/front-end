@@ -41,6 +41,21 @@ export class Notifications extends Component {
                             </Right>
                         </ListItem>
                     );
+                } else if (notificationsOfType[j].type === "Calendario") {
+                    rows.push(
+                        <ListItem avatar key={"LI" + (i * 10 + j)} style={styles.listItem}>
+                            <Left>
+                                <Icon key={"LII" + (i * 10 + j)} name={notificationsOfType[j].icon} color={notificationsOfType[j].colorIcon} style={styles.listIcon}/>
+                            </Left>
+                            <Body key={"LIB" + (i * 10 + j)}>
+                                <Text>{notificationsOfType[j].title}</Text>
+                                <Text note key={"LIBT" + (i * 10 + j)}>{notificationsOfType[j].body}</Text>
+                            </Body>
+                            <Right>
+                                <Text note style={styles.listTime}>{notificationsOfType[j].time}</Text>
+                            </Right>
+                        </ListItem>
+                    );
                 } else {
                     rows.push(
                         <ListItem avatar key={"LI" + (i * 10 + j)} style={styles.listItem}>

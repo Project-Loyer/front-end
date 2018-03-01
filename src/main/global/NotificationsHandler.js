@@ -42,6 +42,18 @@ class NotificationsHandler {
                 icon: 'md-cash',
                 colorIcon: '#ff0800',
                 seen: false
+            },
+            
+            {
+                title: "Novedad de documento",
+                type: "Novedad",
+                body: "Un documento nuevo fue subido al expediente del caso de su cliente Manuel Centurion",
+                time: "2 horas restantes",
+                priority: 'Medium',
+                date: 10000,
+                icon: 'md-alarm',
+                colorIcon: '#258309',
+                seen: false
             }
         ];
     }
