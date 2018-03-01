@@ -7,7 +7,7 @@ const DEFAULT_LAWYER_INFO = {
     specialties: ['Comercial'],
     location: 'San Isidro',
     description: 'Descripcion default de un abogado',
-    picture: require("../images/avatarDefault.png"),
+    picture: 'http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png',
     fee: 5000
 };
 
