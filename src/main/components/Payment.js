@@ -80,6 +80,7 @@ export class Payment extends Component {
                                 <Label>Número de tarjeta</Label>
                                 <Input keyboardType="numeric"
                                        maxLength={16}/>
+                                <Icon name='md-card'/>
                             </Item>
                             <View style={styles.thruAndCVVRow}>
                                 <View style={styles.thruContainer}>
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24
     },
     cardNumberItem: {
-        marginBottom: 12
+        marginBottom: 12,
     },
     thruAndCVVRow: {
         flexDirection: 'row',

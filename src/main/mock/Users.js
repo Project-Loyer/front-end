@@ -1,6 +1,16 @@
 const TYPE_CLIENT = 0;
 const TYPE_LAWYER = 1;
 
+const DEFAULT_LAWYER_INFO = {
+    experience: 15,
+    university: 'UCA',
+    specialties: ['Comercial'],
+    location: 'San Isidro',
+    description: 'Descripcion default de un abogado',
+    picture: require("../images/avatarDefault.png"),
+    fee: 5000
+};
+
 class User {
 
     constructor(props) {
@@ -9,7 +19,11 @@ class User {
         this.password = props.password;
         this.phone = props.phone;
         this.user_type = props.user_type;
-        this.lawyer_info = props.lawyer_info;
+        this.lawyer_info = {
+            ...DEFAULT_LAWYER_INFO,
+            ...props.lawyer_info
+        };
+
         this.location = props.location;
         this.extra = {};
     }
