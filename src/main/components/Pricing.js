@@ -1,18 +1,42 @@
 import React, { Component } from 'react';
 import { Alert,StyleSheet} from 'react-native';
-import { Container, Header, Title, Content, List, ListItem, ListView, Text,Button , Icon, Left, Body, Right, Card, CardItem,Thumbnail,Fab, View } from 'native-base';
+import { Container, Header, Title, Spinner, Content, List, ListItem, ListView, Text,Button , Icon, Left, Body, Right, Card, CardItem,Thumbnail,Fab, View } from 'native-base';
 import {color} from "../global/Color"
 import {LoyerHeader} from "./LoyerHeader";
 
 export class Pricing extends Component {
     constructor(props) {
         super(props);
+        this.state = {openingSession: false};
+    }
+
+    login() {
+        let {onLogin} = this.props.screenProps;
+        this.setState({openingSession:true});
+        let theThis = this;
+        setTimeout(() => {
+            let {onLogin} = theThis.props.screenProps;
+            onLogin(theThis.props.user_type);
+        },1000);
     }
 
     render() {
+        if (this.state.openingSession) {
+            return (
+                <Container>
+                    <Content marginTop="20%">
+                        <Text style={{alignSelf:"center",fontSize:40,marginBottom:"30%"}}>Bienvenidos a <Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text></Text>
+                        <Spinner color={color.primary.dark} />
+                        <Text style={{alignSelf:"center"}}>Iniciando sesión...</Text>
+                    </Content>
+                </Container>
+            );
+        }
         return (
             <Container>
-                <LoyerHeader {...this.props} title={"Plan"}/>
+                <Header >
+                    <Title style={{marginTop:15}}>Seleccionar Plan</Title>
+                </Header>
                 <Content>
                    <Card>
                         <CardItem header style={{backgroundColor: "#4adabc",height: 180}}>
@@ -59,7 +83,7 @@ export class Pricing extends Component {
                         </CardItem>
                         <CardItem>
                             <Button block style={styles.primaryButton}
-                                    onPress={() => this.props.navigation.navigate('Home')}>
+                                    onPress={() => this.login()}>
                                 <Text>Seleccionar Plan</Text>
                             </Button>
                         </CardItem>
@@ -109,7 +133,7 @@ export class Pricing extends Component {
                         </CardItem>
                         <CardItem>
                             <Button block style={styles.primaryButton}
-                                    onPress={() => this.props.navigation.navigate('Payment')}>
+                                    onPress={() => this.props.navigation.navigate('Payment',{user_type: this.props.user_type})}>
                                 <Text>Seleccionar Plan</Text>
                             </Button>
                         </CardItem>
@@ -159,7 +183,7 @@ export class Pricing extends Component {
                         </CardItem>
                         <CardItem>
                             <Button block style={styles.primaryButton}
-                                    onPress={() => this.props.navigation.navigate('Payment')}>
+                                    onPress={() => this.props.navigation.navigate('Payment',{user_type: this.props.user_type})}>
                                 <Text>Seleccionar Plan</Text>
                             </Button>
                         </CardItem>

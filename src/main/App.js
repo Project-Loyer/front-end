@@ -29,9 +29,7 @@ const LoyerApp = DrawerNavigator(
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
         NewCustomer: {screen: NewCustomer},
-        Notifications: { screen: Notifications },
-        Pricing: { screen: Pricing },
-        Payment: { screen: Payment }
+        Notifications: { screen: Notifications }
     },
     {
         initialRouteName : "Home",
@@ -53,7 +51,9 @@ const ClientApp = DrawerNavigator(
 const LoyerAppLogin = StackNavigator(
     {
         Login: { screen: Login },
-        Singup: { screen: Singup }
+        Singup: { screen: Singup },
+        Pricing: { screen: Pricing },
+        Payment: { screen: Payment }
     },{
         initialRouteName : "Login",
         headerMode: "None"

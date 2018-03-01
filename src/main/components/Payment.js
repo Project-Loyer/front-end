@@ -15,14 +15,9 @@ export class Payment extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            paymentStatus: PaymentStatus.UNDEFINED
+            paymentStatus: PaymentStatus.UNDEFINED,
+            openingSession: false
         };
-
-        // TODO: Should receive the next component to show and its required navigation props after payment is successful.
-        /*this.state = {
-            nextComponent: props.navigation.state.params.nextComponent,
-            nextComponentData: props.navigation.state.params.nextComponentData
-        };*/
     }
 
     submitPayment() {
@@ -35,7 +30,13 @@ export class Payment extends Component {
     }
 
     continue() {
-        //this.props.navigation.navigate(this.state.nextComponent);
+        let {onLogin} = this.props.screenProps;
+        this.setState({openingSession:true});
+        let theThis = this;
+        setTimeout(() => {
+            let {onLogin} = theThis.props.screenProps;
+            onLogin(theThis.props.user_type);
+        },1000);
     }
 
     goBack() {
@@ -45,6 +46,18 @@ export class Payment extends Component {
     }
 
     render(){
+        if (this.state.openingSession) {
+            return (
+                <Container>
+                    <Content marginTop="20%">
+                        <Text style={{alignSelf:"center",fontSize:40,marginBottom:"30%"}}>Bienvenidos a <Text style={{fontSize:40,fontWeight:'bold'}}>Loyer</Text></Text>
+                        <Spinner color={color.primary.dark} />
+                        <Text style={{alignSelf:"center"}}>Iniciando sesión...</Text>
+                    </Content>
+                </Container>
+            );
+        }
+
         if (this.state.paymentStatus === PaymentStatus.UNDEFINED) {
             return (
                 <Container>
