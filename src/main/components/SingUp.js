@@ -444,11 +444,15 @@ export class Singup extends Component<{}>{
         let theThis = this;
         setTimeout(() => {
             if (UsersMock.createSession(user.email, user.password)) {
-                theThis.setState({openingSession:true});
-                let {onLogin} = theThis.props.screenProps;
-                setTimeout(function () {
-                    onLogin(user.user_type);
-                },1000);
+                if (user.user_type == UsersMock.TYPE_CLIENT){
+                    theThis.setState({openingSession:true});
+                    let {onLogin} = theThis.props.screenProps;
+                    setTimeout(function () {
+                        onLogin(user.user_type);
+                    },1000);
+                } else {
+                    theThis.props.navigation.navigate('Pricing', {user_type: user.user_type});
+                }
             }
         },1000);
     }

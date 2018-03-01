@@ -29,10 +29,13 @@ export class CalendarScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: {},
+            items: this.generateTasks(),
             isLoading : true
         };
-        this.loadItems(new Date().getTime())
+        //this.loadItems(new Date().getTime())
+        setTimeout(()=>{
+            this.loadItems({timestamp:new Date().getTime()});
+        },10);
     }
 
     render() {
@@ -49,9 +52,9 @@ export class CalendarScreen extends Component {
         return (
             <Container>
                 <LoyerHeader {...this.props} goBack title={"Calendario"}/>
-                <Content style={{minHeight: "100%"}}>
+                <View style={{flex: 1}}>
                     <Agenda
-                        style={{minHeight:"100%"}}
+                        style={{flex: 1}}
                         // the list of items that have to be displayed in agenda. If you want to render item as empty date
                         // the value of date key kas to be an empty array []. If there exists no value for date key it is
                         // considered that the date in question is not yet loaded
@@ -67,9 +70,9 @@ export class CalendarScreen extends Component {
                         // initially selected day
                         selected={this.timeToString()}
                         // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-                        minDate={'1994-01-01'}
+                        minDate={'2010-01-01'}
                         // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-                        maxDate={'2050-12-31'}
+                        maxDate={'2020-12-31'}
                         // Max amount of months allowed to scroll to the past. Default = 50
                         //pastScrollRange={1}
                         // Max amount of months allowed to scroll to the future. Default = 50
@@ -89,31 +92,56 @@ export class CalendarScreen extends Component {
                         //theme={{calendarBackground: "white", agendaKnobColor: Color.LIGHTGREEN[50]}}
                         //renderDay={(day, item) => (<Text>{}</Text>)}
                     />
-                </Content>
+                </View>
             </Container>
         );
     }
 
+
+    generateTasks() {
+        let tasks = [
+            {
+                ts      : new Date('2018-03-02T10:00:00').getTime(),
+                info    : "Reunion con Luis"
+            },
+            {
+                ts      : new Date('2018-03-03T13:00:00').getTime(),
+                info    : "Cargar documentos"
+            },{
+                ts      : new Date('2018-03-02T17:00:00').getTime(),
+                info    : "Llamar a maria"
+            },{
+                ts      : new Date('2018-03-06T10:00:00').getTime(),
+                info    : "Reunion con Esteban Cario"
+            },{
+                ts      : new Date('2018-03-12T10:00:00').getTime(),
+                info    : "Consulta de cliente por medio de LawyerApp"
+            }
+        ];
+        const newItems = {};
+        tasks.forEach((task) => {
+            const strTime = this.timeToString(task.ts);
+            newItems[strTime] = [
+                {
+                    name : task.info,
+                    height: Math.max(50, Math.floor(Math.random() * 150))
+                }
+            ];
+        });
+        return newItems;
+
+    }
+
+
     loadItems(day) {
-        if (this.state.items.isLoading) {
-            return;
-        }
         setTimeout(() => {
-            for (let i = -3; i < 10; i++) {
+            for (let i = -50; i < 50; i++) {
                 const time = day.timestamp + i * 24 * 60 * 60 * 1000;
                 const strTime = this.timeToString(time);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
-                    const numItems = Math.floor(Math.random() * 2);
-                    for (let j = 0; j < numItems; j++) {
-                        this.state.items[strTime].push({
-                            name: 'Tarea del ' + strTime,
-                            height: Math.max(50, Math.floor(Math.random() * 150))
-                        });
-                    }
                 }
             }
-            //console.log(this.state.items);
             const newItems = {};
             Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
             this.setState({
@@ -121,7 +149,6 @@ export class CalendarScreen extends Component {
                 isLoading : false
             });
         }, 100);
-        // console.log(`Load Items for ${day.year}-${day.month}`);
     }
 
     renderItem(item) {

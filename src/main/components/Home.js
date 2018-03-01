@@ -15,15 +15,27 @@ export class Home extends Component {
 
         this.state = {
             loading: true,
+            timeOut:null
         };
 
-        this.closeActivityIndicator = () => setTimeout(() => {
-            this.setState({ loading: false });
-        }, 2000);
+        this.closeActivityIndicator = () => {
+            let tOut = setTimeout(() => {
+                this.setState({ loading: false });
+            }, 2000);
+            this.setState({timeOut:tOut});
+        }
     }
 
-    componentDidMount = () => this.closeActivityIndicator();
-    componentWillUnmount = () => this.setState({loading: true});
+    componentDidMount() {
+        this.closeActivityIndicator();
+    }
+
+    componentWillUnmount() {
+        if (this.state.timeOut) {
+            clearTimeout(this.state.timeOut)
+        }
+        this.setState({loading: true, timeOut:null});
+    }
     render() {
         return (
             <Container>

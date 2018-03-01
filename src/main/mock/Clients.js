@@ -32,7 +32,7 @@ let customers = [
         cases: 8,
         address: "Carmen de Areco, Buenos Aires, Argentina",
         documents: 250,
-        dateNextEvent: "6 de febrero",
+        dateNextEvent: "6 de Marzo",
         birthDay: "24 diciembre 1991",
         email: "estebancario@apresid.com.ar",
         phone: "0114878123"
