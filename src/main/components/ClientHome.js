@@ -31,7 +31,7 @@ export class ClientHome extends Component {
             return (
                 <ListItem   avatar 
                             button={true}
-                            onPress={() => this.props.navigation.navigate('LawyerSearchProfile', { lawyer: lawyer })}
+                            onPress={() => this.props.navigation.navigate('LawyerProfile', {lawyer: lawyer})}
                             key={lawyer.name}
 							style={{ alignSelf: 'stretch' }} 
 				>

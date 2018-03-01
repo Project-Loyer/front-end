@@ -14,3 +14,4 @@ export * from './SingUp';
 export * from './NewCustomer';
 export * from './Payment';
 export * from './Pricing';
+export * from './LawyerProfile';
