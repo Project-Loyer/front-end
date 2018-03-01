@@ -4,6 +4,7 @@ import {Item, Input, Container, Header, View, Title, Content, List, ListItem, Li
 import {color} from "../global/Color";
 import {LoyerHeader} from "./LoyerHeader";
 import UsersMock from "../mock/Users";
+import NotificationsHandler from '../global/NotificationsHandler.js';
 
 export class LawyerProfile extends Component{
     constructor(props) {
@@ -18,7 +19,17 @@ export class LawyerProfile extends Component{
     goToPayment() {
         this.props.navigation.navigate('Payment', {
             onSuccess : () => {
-                //TODO: Generar notificacion con message o algun `El usuario ${UsersMock.loggedUser.name} quiere hacerte una consulta. ${this.message}`
+                NotificationsHandler.notifications.push({
+                    title: UsersMock.loggedUser.name,
+                    type: "Mensaje de Cliente",
+                    body: this.state.message,
+                    priority: 'Medium',
+                    date: 9999,
+                    time: 'Now',
+                    icon: 'md-alarm',
+                    colorIcon: '#258309',
+                    seen: false
+                });
                 this.props.navigation.navigate('ClientHome');
             }
         });
