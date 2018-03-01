@@ -20,8 +20,8 @@ export class Login extends Component<{}> {
         super(props);
         this.state = {
           starting : false,
-          user: "fburlando@estudio.com",
-          pass: 'q1w2e3r4'
+          user: "dmaradona@arg.com",
+          pass: 'eeeeeeeee'
         };
     }
 
@@ -34,6 +34,7 @@ export class Login extends Component<{}> {
             this.setState({starting:true});
             let {onLogin} = this.props.screenProps;
             setTimeout(function () {
+                let user = UsersMock.loggedUser
                 onLogin(user.user_type);
             },1000);
         }

@@ -12,6 +12,7 @@ import {
     NewCustomer, Pricing, Payment
 } from "./components";
 import { ClientHome } from './components/ClientHome';
+import { LawyerSearchProfile } from './components/LawyerSearchProfile';
 import UsersMock from "./mock/Users";
 
 
@@ -39,7 +40,8 @@ const LoyerApp = DrawerNavigator(
 
 const ClientApp = DrawerNavigator(
     {
-        ClientHome: { screen: ClientHome }
+        ClientHome: { screen: ClientHome },
+        LawyerSearchProfile: { screen: LawyerSearchProfile }
     },
     {
         initialRouteName: "ClientHome",
