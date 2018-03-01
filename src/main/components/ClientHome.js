@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Container, Content, Item, List, ListItem, Left, Right, Body, Icon, Text, Input, Thumbnail, Label, Button } from 'native-base';
 
 import { LoyerHeader } from "./LoyerHeader";
-
+import {color} from "../global/Color";
 import UsersMock from "../mock/Users";
 
 export class ClientHome extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            keyword : "",
+        };
         this.state = {
             filter: ''
         }
@@ -29,13 +32,16 @@ export class ClientHome extends Component {
                 <ListItem   avatar 
                             button={true}
                             onPress={() => this.props.navigation.navigate('LawyerSearchProfile', { lawyer: lawyer })}
-                            key={lawyer.name} >
+                            key={lawyer.name}
+							style={{ alignSelf: 'stretch' }} 
+				>
                     <Left style={{ flex: 1 }}>
                         <Thumbnail source={{ uri: lawyer.lawyer_info.picture }} />
                     </Left>
                     <Body style={{ flex: 3 }}>
                         <Text>{lawyer.name}</Text>
-                        <Text note>
+                        {lawyer.lawyer_info.specialties.length > 0 ? <Text style={{color:color.secondary.light,fontSize: 10}}>{lawyer.lawyer_info.specialties.join(", ")}</Text> : null}
+                        <Text note style={{marginTop:10}}>
                             {lawyer.lawyer_info.description}
                         </Text>
                     </Body>
@@ -54,7 +60,7 @@ export class ClientHome extends Component {
                     <Item stackedLabel>
                         <Input placeholder="Inserte nombre o especialidad..." placeholderTextColor="#BAB9B8" onChangeText={(text) => this.setState({ filter: text })}/>
                     </Item>
-                    <List>
+                    <List style={{alignSelf: 'stretch'}}>
                         {
                             lawyers
                         }

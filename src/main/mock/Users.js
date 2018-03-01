@@ -26,6 +26,34 @@ class User {
         return (password === this.password);
     }
 
+    match(keyword) {
+        keyword = keyword.toLowerCase();
+        if (typeof this.name === 'string' && this.name.toLowerCase().indexOf(keyword) !== -1) {
+            return true;
+        }
+        if (typeof this.location === 'string' && this.location.toLowerCase().indexOf(keyword) !== -1) {
+            return true;
+        }
+        if (this.lawyer_info) {
+            let specialties = this.lawyer_info.specialties || [];
+            for (let i=0; i < specialties.length; i++) {
+                if (specialties[i].toLowerCase().indexOf(keyword) !== -1) {
+                    return true;
+                }
+            }
+            let searcheables = ['university','description'];
+            for (let i=0; i<searcheables.length; i++) {
+                if (typeof this.lawyer_info[searcheables[i]] === 'string') {
+                    if (this.lawyer_info[searcheables[i]].toLowerCase().indexOf(keyword) !== -1) {
+                        return true;
+                    }
+                }
+            }
+
+        }
+        return false;
+    }
+
 }
 
 let users = {
@@ -104,11 +132,14 @@ class UsersMock {
         return this.exist(email) ? this.users[email] : null;
     }
 
-    getLawyers() {
+    getLawyers(keyword) {
         let lawyers = [];
         for (let email in this.users) {
-            if (this.users[email].user_type === TYPE_LAWYER) {
-                lawyers.push(this.users[email]);
+            let user = this.users[email];
+            if (user.isLawyer()) {
+                if (!keyword || user.match(keyword)) {
+                    lawyers.push(user);
+                }
             }
         }
         return lawyers;
