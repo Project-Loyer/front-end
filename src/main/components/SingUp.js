@@ -103,15 +103,15 @@ class SingupBasicInformation extends Component<{}> {
     constructor(props) {
         super(props);
         this.state = {
-            name :                  "Tomas Bert",
+            name :                  "Wilmar Barrios",
             nameError:              false,
-            password:               "asdf12345",
+            password:               "123456",
             passwordError:          false,
-            confirm_password:       "asdf12345",
+            confirm_password:       "123456",
             confirm_passwordError:  false,
-            email:                  "tomasbert12@gmail.com",
+            email:                  "wbarrios@mail.com",
             emailError:             false,
-            phone:                  "1162956888",
+            phone:                  "1126007512",
             message_error:          "",
         }
     }
