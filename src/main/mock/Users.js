@@ -11,6 +11,7 @@ class User {
         this.user_type = props.user_type;
         this.lawyer_info = props.lawyer_info;
         this.location = props.location;
+        this.extra = {};
     }
 
     isLawyer() {

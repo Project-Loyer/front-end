@@ -7,6 +7,8 @@ import IconBadge from 'react-native-icon-badge';
 import renderIf from "../util/renderIf";
 import {Alert} from "react-native";
 
+import UsersMock from "../mock/Users";
+
 export class LoyerHeader extends Component<{}> {
     constructor(props) {
         super(props);
@@ -22,6 +24,13 @@ export class LoyerHeader extends Component<{}> {
 
     componentWillUnmount() {
         clearInterval(this.interval);
+    }
+
+    getThumbnail() {
+        if (UsersMock.loggedUser && UsersMock.loggedUser.isLawyer() && UsersMock.loggedUser.lawyer_info.picture) {
+            return <Thumbnail small source={{uri: UsersMock.loggedUser.lawyer_info.picture}} />;
+        }
+        return null;
     }
 
     render() {
@@ -47,7 +56,7 @@ export class LoyerHeader extends Component<{}> {
                             <Button
                                 transparent
                                 onPress={() => Alert.alert("Perfil de Usuario")}>
-                                <Thumbnail small source={{uri: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg'}}/>
+                                { this.getThumbnail() }
                             </Button>
                             <IconBadge
                                 MainElement={
