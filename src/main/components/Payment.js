@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Container, Content, Form, H1, H3, Icon, Input, Item, Label, Spinner, Text, View} from "native-base";
+import {Button, Container, Content, Form, H1, H3, Icon, Input, Item, Label, Spinner, Text, View, Header} from "native-base";
 import { StyleSheet } from 'react-native';
 import {LoyerHeader} from "./LoyerHeader";
 import {color} from "../global/Color";
@@ -61,7 +61,7 @@ export class Payment extends Component {
         if (this.state.paymentStatus === PaymentStatus.UNDEFINED) {
             return (
                 <Container>
-                    <LoyerHeader {...this.props} title={"Pago"} noElevation/>
+                    <Header />
                     <Content style={styles.container}>
                         <Form>
                             <H1>Ingresá los datos de tu tarjeta</H1>
