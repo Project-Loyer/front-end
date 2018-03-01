@@ -78,7 +78,8 @@ let users = {
             location: 'La Plata',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. ',
             picture: 'http://necocheahoy.com/wp-content/uploads/2017/05/1-104.jpg',
-            fee: 10000
+            fee: 10000,
+            rank: 4.5
         }
     }),
     "jmiglino@gmail.com" : new User({
@@ -95,6 +96,24 @@ let users = {
             description: 'Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.',
             picture: 'http://am1300lasalada.com.ar/wp-content/uploads/2016/02/0000219868.jpg',
             fee: 7400,
+            rank: 3.0
+        },
+    }),
+    "flissarrague@gmail.com" : new User({
+        name: 'Fernando Lissarrague',
+        email: 'flissarrague@gmail.com',
+        password: 'asdf1234',
+        phone : "1235356567",
+        user_type: TYPE_LAWYER,
+        lawyer_info : {
+            experience: 12,
+            university: 'UBA',
+            specialties: ['civil', 'comercial', 'empresarial'],
+            location: 'Chivilcoy, Buenos Aires',
+            description: 'Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.',
+            picture: 'http://portal.uc3m.es/portal/pls/portal/docs/1/44061984.JPG',
+            fee: 5200,
+            rank: 3.2
         },
     }),
     "dmaradona@arg.com" : new User({
