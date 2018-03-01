@@ -4,7 +4,6 @@ import {AsyncStorage} from "react-native";
 import {Container} from "native-base";
 import FCM from 'react-native-fcm';
 import {SideBar} from "./sidebar/SideBar";
-import {ClientSideBar} from "./sidebar/ClientSideBar";
 import {
     Login, Home, CalendarScreen,
     Singup, Customers, Customer, Documents,
