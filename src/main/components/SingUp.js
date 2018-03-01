@@ -103,15 +103,15 @@ class SingupBasicInformation extends Component<{}> {
     constructor(props) {
         super(props);
         this.state = {
-            name :                  "Wilmar Barrios",
+            name :                  "",
             nameError:              false,
-            password:               "123456",
+            password:               "",
             passwordError:          false,
-            confirm_password:       "123456",
+            confirm_password:       "",
             confirm_passwordError:  false,
-            email:                  "wbarrios@mail.com",
+            email:                  "",
             emailError:             false,
-            phone:                  "1126007512",
+            phone:                  "",
             message_error:          "",
         }
     }
@@ -182,7 +182,7 @@ class SingupBasicInformation extends Component<{}> {
                 <Item error={this.state.nameError}>
                     <Input
                         style={styles.textInput}
-                        //autoFocus = {true}
+                        autoFocus = {true}
                         error={true}
                         value={this.state.name}
                         ref={(input) => this._name = input}
@@ -209,7 +209,7 @@ class SingupBasicInformation extends Component<{}> {
                 <Item error={this.state.confirm_passwordError}>
                     <Input
                         style={styles.textInput}
-                        value={this.state.password}
+                        value={this.state.confirm_password}
                         onChangeText={(text) => this.setState({confirm_password:text})}
                         placeholder="Repita la contraseña"
                         password={true}
@@ -242,7 +242,7 @@ class SingupBasicInformation extends Component<{}> {
                     style={{marginTop : 25, paddingHorizontal: 5}}
                     ref='phone'
                     onChangePhoneNumber={(phone) => this.setState({phone:phone})}
-                    textProps={{placeholder:"Número de telefono", value:"+54 " + this.state.phone}}
+                    textProps={{placeholder:"Número de telefono"}}
                 />
 
                 <Button full style={{backgroundColor: color.secondary.dark, marginTop:60}} onPress={() => this.confirm() }>
@@ -258,15 +258,15 @@ class SignUpAdvanceLawyerInformation extends Component<{}> {
         super(props);
 
         this.state = {
-            selectedSpecialties : ["Familiar","Ambiental"],
+            selectedSpecialties : [],
             collapsed :     true,
             showSummary :   false,
 
-            location:       "Vicente Lopez, Buenos Aires, Argentina",
-            university:     "Universidad de la matanza",
-            experience:     "12",
-            fee:            "520",
-            description:    "El mejor boga del conurbano. CALL ME RAIG NAW!!!"
+            location:       "",
+            university:     "",
+            experience:     "",
+            fee:            "",
+            description:    ""
         }
     }
 
