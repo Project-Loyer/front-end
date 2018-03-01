@@ -345,6 +345,7 @@ class SignUpAdvanceLawyerInformation extends Component<{}> {
                         onChangeText={(y) => this.setState({experience:y})}
                         onFocus={()=>this.collapseSpecialities()}
                         keyboardType="numeric"
+                        value={this.state.experience}
                         placeholder='Años de experiencia'
                     />
                 </Item>
@@ -352,6 +353,7 @@ class SignUpAdvanceLawyerInformation extends Component<{}> {
                     <Input
                         onChangeText={(f) => this.setState({fee:f})}
                         onFocus={()=>this.collapseSpecialities()}
+                        value={this.state.fee}
                         keyboardType="numeric"
                         placeholder='Honorarios (precio por consulta)'
                     />
@@ -360,6 +362,7 @@ class SignUpAdvanceLawyerInformation extends Component<{}> {
                     <Input
                         onChangeText={(u) => this.setState({university:u})}
                         onFocus={()=>this.collapseSpecialities()}
+                        value={this.state.university}
                         placeholder='Universidad'
                     />
                 </Item>
@@ -368,6 +371,7 @@ class SignUpAdvanceLawyerInformation extends Component<{}> {
                         onChangeText={(l) => this.setState({location:l})}
                         onFocus={()=>this.collapseSpecialities()}
                         placeholder='Ubicación'
+                        value={this.state.location}
                     />
                 </Item>
 
@@ -388,6 +392,7 @@ class SignUpAdvanceLawyerInformation extends Component<{}> {
                         style={{alignSelf: 'flex-start'}}
                         multiline={true}
                         editable={true}
+                        value={this.state.description}
                         placeholder='Resumen' />
                 </Item>
                 <Text style={{fontSize:10}}>El campo es opcional.</Text>

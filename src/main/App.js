@@ -30,7 +30,7 @@ const LoyerApp = DrawerNavigator(
         Document: {screen: Document},
         NewDocument: {screen: NewDocument},
         NewCustomer: {screen: NewCustomer},
-        Notifications: { screen: Notifications }
+        Notifications: { screen: Notifications },
     },
     {
         initialRouteName : "Home",
@@ -42,6 +42,7 @@ const LoyerApp = DrawerNavigator(
 const ClientApp = DrawerNavigator(
     {
         ClientHome: { screen: ClientHome },
+        Payment: { screen: Payment },
         LawyerProfile: { screen: LawyerProfile }
     },
     {

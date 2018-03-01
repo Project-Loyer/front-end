@@ -20,6 +20,13 @@ export class Payment extends Component {
         };
     }
 
+    componentWillMount() {
+        this.props = {
+            ...this.props,
+            ...this.props.navigation.state.params
+        }
+    }
+
     submitPayment() {
         this.setState({
             paymentStatus: PaymentStatus.LOADING
@@ -30,6 +37,10 @@ export class Payment extends Component {
     }
 
     continue() {
+        if (typeof this.props.onSuccess === 'function') {
+            this.props.onSuccess();
+            return;
+        }
         let {onLogin} = this.props.screenProps;
         this.setState({openingSession:true});
         let theThis = this;
