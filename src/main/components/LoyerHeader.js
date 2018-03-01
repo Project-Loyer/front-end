@@ -58,20 +58,22 @@ export class LoyerHeader extends Component<{}> {
                                 onPress={() => Alert.alert("Perfil de Usuario")}>
                                 { this.getThumbnail() }
                             </Button>
-                            <IconBadge
-                                MainElement={
-                                    <Button
-                                        transparent
-                                        onPress={() => this.props.navigation.navigate("Notifications")}>
-                                        <Icon name="notifications" />
-                                    </Button>
-                                }
-                                BadgeElement={
-                                    <Text style={styles.notificationsBadgeNumber}>{this.state.notifications}</Text>
-                                }
-                                IconBadgeStyle={styles.notificationsBadge}
-                                Hidden={this.state.notifications === 0}
-                            />
+                            {renderIf(UsersMock.loggedUser.user_type === UsersMock.TYPE_LAWYER)(
+                                <IconBadge
+                                    MainElement={
+                                        <Button
+                                            transparent
+                                            onPress={() => this.props.navigation.navigate("Notifications")}>
+                                            <Icon name="notifications" />
+                                        </Button>
+                                    }
+                                    BadgeElement={
+                                        <Text style={styles.notificationsBadgeNumber}>{this.state.notifications}</Text>
+                                    }
+                                    IconBadgeStyle={styles.notificationsBadge}
+                                    Hidden={this.state.notifications === 0}
+                                />    
+                            )}
                         </Right>
                     )}
                 </Header>
