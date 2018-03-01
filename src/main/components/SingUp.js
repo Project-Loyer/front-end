@@ -258,15 +258,15 @@ class SignUpAdvanceLawyerInformation extends Component<{}> {
         super(props);
 
         this.state = {
-            selectedSpecialties : [],
+            selectedSpecialties : ["Familiar","Ambiental"],
             collapsed :     true,
             showSummary :   false,
 
-            location:       "",
-            university:     "",
-            experience:     "",
-            fee:            "",
-            description:    ""
+            location:       "Vicente Lopez, Buenos Aires, Argentina",
+            university:     "Universidad de la matanza",
+            experience:     "12",
+            fee:            "520",
+            description:    "El mejor boga del conurbano. CALL ME RAIG NAW!!!"
         }
     }
 
